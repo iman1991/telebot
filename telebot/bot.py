@@ -18,7 +18,7 @@ bot = telebot.TeleBot(config.token)
 @bot.message_handler(commands=['start'])
 @bot.message_handler(regexp="Назад")
 def handle_start(message):
-    user_markup = telebot.types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
+    user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Получить воду', 'Пополнить баланс')
     user_markup.row('Статистика', 'Баланс', 'Водоматы')
     bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
@@ -26,16 +26,16 @@ def handle_start(message):
 
 @bot.message_handler(regexp='Получить воду')
 def handle_start(message):
-    user_markup = telebot.types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
+    user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
-    bot.send_message(message.from_user.id, 'На вашем счету XXX рублей...', reply_markup=user_markup)
-    bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
+    sent = bot.send_message(message.from_user.id, 'На вашем счету XXX рублей...\nВведите ID водомата', reply_markup=user_markup)
+    bot.register_next_step_handler(sent, check)
 
 
 
 @bot.message_handler(regexp='Пополнить баланс')
 def handle_start(message):
-    user_markup = telebot.types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
+    user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
     bot.send_message(message.from_user.id, 'На вашем счету XXX рублей...', reply_markup=user_markup)
     bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
@@ -43,28 +43,28 @@ def handle_start(message):
 
 @bot.message_handler(regexp='Статистика')
 def handle_start(message):
-    user_markup = telebot.types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
+    user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
     bot.send_message(message.from_user.id, 'OK', reply_markup=user_markup)
 
 
 @bot.message_handler(regexp='Баланс')
 def handle_start(message):
-    user_markup = telebot.types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
+    user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
     bot.send_message(message.from_user.id, '150₽', reply_markup=user_markup)
 
 
 @bot.message_handler(regexp='Водоматы')
 def handle_start(message):
-    user_markup = telebot.types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
+    user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
     bot.send_message(message.from_user.id, 'OK', reply_markup=user_markup)
 
 
 
 def check(message):
-    user_markup = telebot.types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
+    user_markup = telebot.types.ReplyKeyboardMarkup()
     if message.text.isdigit():
         bot.send_message(message.from_user.id, '1 литр 4₽\nПоднесите тару к водомату и нажмите кноку "Старт" на аппарате.', reply_markup=user_markup)
         # a['id'] = message.text
@@ -74,7 +74,7 @@ def check(message):
         
         # data = sock.recv(1024)
         # print(data)
-    else:
+    elif not (message.text.isdigit()):
         bot.send_message(message.from_user.id, 'Ошибка ввода', reply_markup=user_markup)
         bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
 
