@@ -6,11 +6,11 @@ import config
 import socket
 import json
 
-a = {"id":"0","name":"durak"}
+# a = {"id":"0","name":"durak"}
 
-sock = socket.socket()
+# sock = socket.socket()
 
-sock.connect(("172.18.0.108", 9090))
+# sock.connect(("172.18.0.108", 9090))
 
 
 bot = telebot.TeleBot(config.token)
@@ -67,13 +67,13 @@ def check(message):
     user_markup = telebot.types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
     if message.text.isdigit():
         bot.send_message(message.from_user.id, '1 литр 4₽\nПоднесите тару к водомату и нажмите кноку "Старт" на аппарате.', reply_markup=user_markup)
-        a['id'] = message.text
-        j = json.dumps(a)
+        # a['id'] = message.text
+        # j = json.dumps(a)
         
-        sock.send(j.encode("utf-8"))
+        # sock.send(j.encode("utf-8"))
         
-        data = sock.recv(1024)
-        print(data)
+        # data = sock.recv(1024)
+        # print(data)
     else:
         bot.send_message(message.from_user.id, 'Ошибка ввода', reply_markup=user_markup)
         bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
