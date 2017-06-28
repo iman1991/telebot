@@ -55,13 +55,6 @@ def handle_start(message):
     bot.send_message(message.from_user.id, '150₽', reply_markup=user_markup)
 
 
-@bot.message_handler(regexp='Водоматы')
-def handle_start(message):
-    user_markup = telebot.types.ReplyKeyboardMarkup()
-    user_markup.row('Назад')
-    bot.send_message(message.from_user.id, 'OK', reply_markup=user_markup)
-
-
 
 def check(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
