@@ -5,6 +5,20 @@ import telebot
 import config
 import socket
 import json
+import cherrypy
+import config
+
+WEBHOOK_HOST = '194.67.217.180'
+WEBHOOK_PORT = 80  # 443, 80, 88 или 8443 (порт должен быть открыт!)
+WEBHOOK_LISTEN = '0.0.0.0'  # На некоторых серверах придется указывать такой же IP, что и выше
+
+WEBHOOK_SSL_CERT = './webhook_cert.pem'  # Путь к сертификату
+WEBHOOK_SSL_PRIV = './webhook_pkey.pem'  # Путь к приватному ключу
+
+WEBHOOK_URL_BASE = "https://%s:%s" % (WEBHOOK_HOST, WEBHOOK_PORT)
+WEBHOOK_URL_PATH = "/%s/" % (config.token)
+
+bot = telebot.TeleBot(config.token)
 
 # a = {"id":"0","name":"durak"}
 
@@ -20,7 +34,7 @@ bot = telebot.TeleBot(config.token)
 def handle_start(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Получить воду', 'Пополнить баланс')
-    user_markup.row('Статистика', 'Баланс', 'Водоматы')
+    user_markup.row('Статистика', 'Баланс')
     bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
 
 
