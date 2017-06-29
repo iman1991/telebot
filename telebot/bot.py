@@ -5,8 +5,8 @@ import telebot
 import config
 import socket
 import json
-import cherrypy
-import config
+# import cherrypy
+# import config
 
 bot = telebot.TeleBot(config.token)
 
@@ -23,9 +23,33 @@ bot = telebot.TeleBot(config.token)
 @bot.message_handler(regexp="Назад")
 def handle_start(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
-    user_markup.row('Получить воду', 'Пополнить баланс')
-    user_markup.row('Статистика', 'Баланс')
+    user_markup.row('Получить воду')
+    user_markup.row('Пополнить баланс')
+    user_markup.row('Статистика')
+    user_markup.row('Баланс')
+    # user_markup.row('Получить воду', 'Пополнить баланс')
+    # user_markup.row('Статистика', 'Баланс')
     bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @bot.message_handler(regexp='Получить воду')
