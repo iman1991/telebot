@@ -4,6 +4,33 @@ import telebot
 import config
 import socket
 import json
+import pymysql
+
+
+
+
+
+pymysql.install_as_MySQLdb()
+
+conn = pymysql.connect(host='194.67.217.180', port=3306, user='root', passwd='7087', db='mysql')
+
+cur = conn.cursor()
+
+cur.execute("SELECT * FROM users")
+
+print(cur.description)
+
+for row in cur:
+    print(row)
+
+cur.close()
+conn.close()
+conn.close()
+
+
+
+
+
 
 bot = telebot.TeleBot(config.token)
 
