@@ -10,22 +10,22 @@ import pymysql
 
 
 
-pymysql.install_as_MySQLdb()
+# pymysql.install_as_MySQLdb()
 
-conn = pymysql.connect(host='194.67.217.180', port=3306, user='root', passwd='7087', db='mysql')
+# conn = pymysql.connect(host='194.67.217.180', port=3306, user='root', passwd='7087', db='mysql')
 
-cur = conn.cursor()
+# cur = conn.cursor()
 
-cur.execute("SELECT * FROM users")
+# cur.execute("SELECT * FROM users")
 
-print(cur.description)
+# print(cur.description)
 
-for row in cur:
-    print(row)
+# for row in cur:
+#     print(row)
 
-cur.close()
-conn.close()
-conn.close()
+# cur.close()
+# conn.close()
+# conn.close()
 
 
 
