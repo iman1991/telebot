@@ -10,12 +10,13 @@ bot = telebot.TeleBot(config.token)
 @bot.message_handler(commands=['start'])
 @bot.message_handler(regexp="Назад")
 def handle_start(message):
-    user_markup = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True)
+    user_markup = types.ReplyKeyboardMarkup()
     user_markup.row('Получить воду')
     user_markup.row('Пополнить баланс')
     user_markup.row('Статистика')
     user_markup.row('Баланс')
     bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
+
 
 @bot.message_handler(regexp='Получить воду')
 def handle_start(message):
