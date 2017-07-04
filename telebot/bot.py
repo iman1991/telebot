@@ -4,7 +4,7 @@ import telebot
 import config
 import socket
 import json
-import pymysql
+import pymysql.cursor
 
 
 connection = pymysql.connect(host='127.0.0.1',
