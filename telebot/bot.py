@@ -7,9 +7,6 @@ import json
 import pymysql
 
 
-uid = message.from_user.id
-uname = message.chat.first_name
-
 connection = pymysql.connect(host='127.0.0.1',
                              user='root',
                              password='7087',
