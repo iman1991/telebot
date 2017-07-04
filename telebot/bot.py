@@ -28,9 +28,9 @@ def add_user(uid, uname):
         connection.commit()   
         cursor.close()
         connection.close()
+        return True
 
 @bot.message_handler(commands=['start'])
-@bot.message_handler(regexp="Назад")
 def handle_start(message):
     uid = message.from_user.id
     uname = message.chat.first_name
