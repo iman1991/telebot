@@ -35,6 +35,8 @@ bot = telebot.TeleBot(config.token)
 def handle_start(message):
     uid = message.from_user.id
     uname = message.chat.first_name
+    print(uid)
+    print(uname)
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Получить воду')
     user_markup.row('Пополнить баланс')
