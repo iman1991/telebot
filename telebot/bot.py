@@ -44,7 +44,7 @@ def handle_start(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Получить воду')
     user_markup.row('Пополнить баланс')
-    user_markup.row('Статистика')
+    # user_markup.row('Статистика')
     user_markup.row('Баланс')
     bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
 
