@@ -22,8 +22,6 @@ def add_user(uid, uname):
     cursor.execute("SELECT id FROM users WHERE id = %i" % (uid))
     results = cursor.fetchall()
     cursor.close()
-    print(uid)
-    print(results[id])
     if (str(uid) != str(results[id])):
         cursor = connection.cursor()
         cursor.execute("INSERT INTO users (id, name) values ( %i, '%s')" % (uid, uname))
