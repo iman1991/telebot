@@ -17,26 +17,25 @@ connection = pymysql.connect(host='127.0.0.1',
 
 bot = telebot.TeleBot(config.token)
 
-# def add_user():
-#     cursor = connection.cursor()
-#     cursor.execute("SELECT idT FROM users WHERE idT = '%(uid)d'")
-#     results = cursor.fetchall()
-#     cursor.close()
-#     connection.close()
-#     if (uid != results):
-#         cursor = connection.cursor()
-#         cursor.execute("INSERT INTO users (idT, name) values ('%(uid)d', '%(uname)d')")
-#         connection.commit()   
-#         cursor.close()
-#         connection.close()
+def add_user(uid, uname):
+    cursor = connection.cursor()
+    cursor.execute("SELECT idT FROM users WHERE idT = '%(uid)d'")
+    results = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    if (str(uid) != str(results)):
+        cursor = connection.cursor()
+        cursor.execute("INSERT INTO users (idT, name) values ('%(uid)d', '%(uname)d')")
+        connection.commit()   
+        cursor.close()
+        connection.close()
 
 @bot.message_handler(commands=['start'])
 @bot.message_handler(regexp="Назад")
 def handle_start(message):
     uid = message.from_user.id
     uname = message.chat.first_name
-    print(uid)
-    print(uname)
+    add_user(uid, uname)
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Получить воду')
     user_markup.row('Пополнить баланс')
