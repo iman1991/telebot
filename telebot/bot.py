@@ -7,6 +7,8 @@ import json
 import pymysql
 
 
+uid = message.from_user.id
+uname = message.chat.first_name
 
 connection = pymysql.connect(host='127.0.0.1',
                              user='root',
@@ -21,7 +23,7 @@ def add_user():
     results = cursor.fetchall()
     cursor.close()
     connection.close()
-    if (uid != results):
+    if (uid != results)
         cursor = connection.cursor()
         cursor.execute("INSERT INTO users (idT, name) values ('%(uid)d', '%(uname)d')")
         connection.commit()   
@@ -34,19 +36,17 @@ bot = telebot.TeleBot(config.token)
 @bot.message_handler(commands=['start'])
 @bot.message_handler(regexp="Назад")
 def handle_start(message):
-<<<<<<< HEAD
     if (add_user()):
         uid = message.from_user.id
-       	uname = message.chat.first_name
-=======
-    if (add_user())
->>>>>>> b916c128fe3247940aad1655c0d247d86a6a4a91
+        uname = message.chat.first_name
         user_markup = telebot.types.ReplyKeyboardMarkup()
         user_markup.row('Получить воду')
         user_markup.row('Пополнить баланс')
         user_markup.row('Статистика')
         user_markup.row('Баланс')
         bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
+
+
 
 
 @bot.message_handler(regexp='Получить воду')
