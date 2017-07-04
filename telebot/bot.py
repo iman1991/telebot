@@ -99,7 +99,7 @@ def check(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     if message.text.isdigit():
         bot.send_message(message.from_user.id, '1 литр 4₽\nПоднесите тару к водомату и нажмите кноку "Старт" на аппарате.', reply_markup=user_markup)
-    elif not (message.text.isdigit()):
+    elif not (message.text.isdigit()) and not "Назад":
         bot.send_message(message.from_user.id, 'Ошибка ввода', reply_markup=user_markup)
         bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
 
