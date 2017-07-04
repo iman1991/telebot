@@ -24,7 +24,7 @@ def add_user(uid, uname):
     cursor.close()
     if (str(uid) != str(results)):
         cursor = connection.cursor()
-        cursor.execute("INSERT INTO users (id, name) values 123124124, '%(uname)s')")
+        cursor.execute("INSERT INTO users (id, name) values 123124124, 'Jeka')")
         connection.commit()   
         cursor.close()
         connection.close()
