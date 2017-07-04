@@ -19,12 +19,12 @@ bot = telebot.TeleBot(config.token)
 
 def add_user(uid, uname):
     cursor = connection.cursor()
-    cursor.execute("SELECT id FROM users WHERE id = %(uid)")
+    cursor.execute("SELECT id FROM users WHERE id = 123124")
     results = cursor.fetchall()
     cursor.close()
     if (str(uid) != str(results)):
         cursor = connection.cursor()
-        cursor.execute("INSERT INTO users (id, name) values (%(uid), '%(uname)s')")
+        cursor.execute("INSERT INTO users (id, name) values 123124124, '%(uname)s')")
         connection.commit()   
         cursor.close()
         connection.close()
