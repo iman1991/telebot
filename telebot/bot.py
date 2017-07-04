@@ -34,7 +34,7 @@ def score(uid, uname):
     cursor = connection.cursor()
     cursor.execute("SELECT score FROM users WHERE idT = %i" % (uid))
     results = cursor.fetchone()
-    print(score)
+    print(results)
     cursor.close()
     return results
 
