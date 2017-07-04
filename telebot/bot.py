@@ -4,7 +4,7 @@ import telebot
 import config
 import socket
 import json
-import pymysql
+import pymysql.cursors
 
 
 connection = pymysql.connect(host='127.0.0.1',
@@ -14,7 +14,7 @@ connection = pymysql.connect(host='127.0.0.1',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
 
-def add_user():
+def add_user(uid, uname):
     cursor = connection.cursor()
     cursor.execute("SELECT idT FROM users WHERE idT = '%(uid)d'")
     results = cursor.fetchall()
@@ -35,7 +35,7 @@ bot = telebot.TeleBot(config.token)
 def handle_start(message):
     uid = message.from_user.id
     uname = message.chat.first_name
-    if (add_user()):
+    if (add_user(uid, uname)):
         user_markup = telebot.types.ReplyKeyboardMarkup()
         user_markup.row('Получить воду')
         user_markup.row('Пополнить баланс')
