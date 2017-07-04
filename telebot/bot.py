@@ -33,7 +33,6 @@ def score(uid):
     cursor = connection.cursor()
     cursor.execute("SELECT score FROM users WHERE idT = %i" % (uid))
     results = cursor.fetchone()
-    print(results)
     cursor.close()
     return str(results['score']) + '₽'
 
@@ -67,7 +66,7 @@ def handle_start(message):
 def handle_start(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
-    sent = bot.send_message(message.from_user.id, 'На вашем счету XXX рублей...\nВведите ID водомата', reply_markup=user_markup)
+    sent = bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
     bot.register_next_step_handler(sent, check)
 
 
@@ -75,15 +74,14 @@ def handle_start(message):
 def handle_start(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
-    bot.send_message(message.from_user.id, 'На вашем счету XXX рублей...', reply_markup=user_markup)
     bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
 
 
-@bot.message_handler(regexp='Статистика')
-def handle_start(message):
-    user_markup = telebot.types.ReplyKeyboardMarkup()
-    user_markup.row('Назад')
-    bot.send_message(message.from_user.id, 'OK', reply_markup=user_markup)
+# @bot.message_handler(regexp='Статистика')
+# def handle_start(message):
+#     user_markup = telebot.types.ReplyKeyboardMarkup()
+#     user_markup.row('Назад')
+#     bot.send_message(message.from_user.id, 'OK', reply_markup=user_markup)
 
 
 @bot.message_handler(regexp='Баланс')
