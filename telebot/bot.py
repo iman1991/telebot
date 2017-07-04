@@ -6,31 +6,32 @@ import socket
 import json
 import pymysql
 
+uid = message.from_user.id
+uname = message.chat.first_name
 
+connection = pymysql.connect(host='127.0.0.1',
+                             user='root',
+                             password='7087',
+                             db='vodomat',
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor)
 
-
-
-# pymysql.install_as_MySQLdb()
-
-# conn = pymysql.connect(host='194.67.217.180', port=3306, user='root', passwd='7087', db='mysql')
-
-# cur = conn.cursor()
-
-# cur.execute("SELECT * FROM users")
-
-# print(cur.description)
-
-# for row in cur:
-#     print(row)
-
-# cur.close()
-# conn.close()
-# conn.close()
-
-
-
-
-
+def add_user():
+    cursor = connection.cursor()
+    cursor.execute("SELECT idT FROM users WHERE idT = '%(uid)d'")
+    results = cursor.fetchall()
+    print(results)
+    cursor.close()
+    connection.close()
+    if (uid == results)
+        return True
+    elif (uid != results)
+        cursor = connection.cursor()
+        cursor.execute("INSERT INTO users (idT, name) values ('%(uid)d', '%(uname)d')")
+        results = cursor.fetchall()
+        print(results)
+        cursor.close()
+        connection.close()
 
 bot = telebot.TeleBot(config.token)
 
