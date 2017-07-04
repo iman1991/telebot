@@ -4,7 +4,7 @@ import telebot
 import config
 import socket
 import json
-import pymysql.cursors
+import pymysql
 
 
 uid = message.from_user.id
@@ -21,28 +21,28 @@ def add_user():
     cursor = connection.cursor()
     cursor.execute("SELECT idT FROM users WHERE idT = '%(uid)d'")
     results = cursor.fetchall()
-    print(results)
     cursor.close()
     connection.close()
     if (uid != results)
         cursor = connection.cursor()
         cursor.execute("INSERT INTO users (idT, name) values ('%(uid)d', '%(uname)d')")
-        conn.commit()
+        connection.commit()   
         cursor.close()
         connection.close()
+        return True
 
 bot = telebot.TeleBot(config.token)
 
 @bot.message_handler(commands=['start'])
 @bot.message_handler(regexp="Назад")
 def handle_start(message):
-    add_user()
-    user_markup = telebot.types.ReplyKeyboardMarkup()
-    user_markup.row('Получить воду')
-    user_markup.row('Пополнить баланс')
-    user_markup.row('Статистика')
-    user_markup.row('Баланс')
-    bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
+    if (add_user())
+        user_markup = telebot.types.ReplyKeyboardMarkup()
+        user_markup.row('Получить воду')
+        user_markup.row('Пополнить баланс')
+        user_markup.row('Статистика')
+        user_markup.row('Баланс')
+        bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
 
 
 @bot.message_handler(regexp='Получить воду')
