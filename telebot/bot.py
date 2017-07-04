@@ -22,6 +22,7 @@ def add_user(uid, uname):
     cursor.execute("SELECT idT FROM users WHERE idT = %i" % (uid))
     results = cursor.fetchone()
     cursor.close()
+    print(results)
     print(results["idT"])
     if (uid != results["idT"]):
         cursor = connection.cursor()
