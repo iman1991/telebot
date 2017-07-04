@@ -19,7 +19,7 @@ bot = telebot.TeleBot(config.token)
 
 def add_user(uid, uname):
     cursor = connection.cursor()
-    cursor.execute("SELECT idT FROM users WHERE idT = %i" % (message.from_user.id))
+    cursor.execute("SELECT idT FROM users WHERE idT = %i" % (uid))
     results = cursor.fetchone()
     cursor.close()
     if (uid != results["idT"]):
