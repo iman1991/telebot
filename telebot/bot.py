@@ -27,10 +27,9 @@ def add_user(uid, uname):
         cursor.execute("INSERT INTO users (idT, name, score) values ( %i, '%s', %i)" % (uid, uname, 0))
         connection.commit()   
         cursor.close()
-        connection.close()
         return True
 
-def score(uid, uname):
+def score(uid):
     cursor = connection.cursor()
     cursor.execute("SELECT score FROM users WHERE idT = %i" % (uid))
     results = cursor.fetchone()
@@ -43,7 +42,7 @@ def handle_start(message):
     uid = message.from_user.id
     uname = message.chat.first_name
     add_user(uid, uname)
-    score(uid, uname)
+    score(uid)
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Получить воду')
     user_markup.row('Пополнить баланс')
