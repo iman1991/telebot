@@ -34,9 +34,13 @@ bot = telebot.TeleBot(config.token)
 @bot.message_handler(commands=['start'])
 @bot.message_handler(regexp="Назад")
 def handle_start(message):
+<<<<<<< HEAD
     if (add_user()):
         uid = message.from_user.id
        	uname = message.chat.first_name
+=======
+    if (add_user())
+>>>>>>> b916c128fe3247940aad1655c0d247d86a6a4a91
         user_markup = telebot.types.ReplyKeyboardMarkup()
         user_markup.row('Получить воду')
         user_markup.row('Пополнить баланс')
