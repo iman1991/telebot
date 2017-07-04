@@ -19,16 +19,16 @@ bot = telebot.TeleBot(config.token)
 
 def add_user(uid, uname):
     cursor = connection.cursor()
-    cursor.execute("SELECT id FROM users WHERE id = %i" % (uid))
+    cursor.execute("SELECT idT FROM users WHERE id = %i" % (uid))
     results = cursor.fetchall()
     cursor.close()
-    print(results['id'])
-    if (uid != results[0]["id"]):
-        cursor = connection.cursor()
-        cursor.execute("INSERT INTO users (id, name) values ( %i, '%s')" % (uid, uname))
-        connection.commit()   
-        cursor.close()
-        connection.close()
+    print(results)
+    # if (uid != results[0]["id"]):
+    #     cursor = connection.cursor()
+    #     cursor.execute("INSERT INTO users (id, name) values ( %i, '%s')" % (uid, uname))
+    #     connection.commit()   
+    #     cursor.close()
+    #     connection.close()
 
 @bot.message_handler(commands=['start'])
 @bot.message_handler(regexp="Назад")
