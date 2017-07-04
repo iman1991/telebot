@@ -4,33 +4,26 @@ import telebot
 import config
 import socket
 import json
-import pymysql
+import pymysql.cursors
 
 
 
+connection = pymysql.connect(host='127.0.0.1',
+                             user='root',
+                             password='7087',
+                             db='vodomat',
+                             charset='utf8mb4',
+                             cursorclass=pymysql.cursors.DictCursor)
 
+cursor = connection.cursor()
 
-# pymysql.install_as_MySQLdb()
+cursor.execute("SELECT idT FROM users WHERE idT = message.from_user.id")
 
-# conn = pymysql.connect(host='194.67.217.180', port=3306, user='root', passwd='7087', db='mysql')
+results = cursor.fetchall()
+print(results)
+cursor.close()
 
-# cur = conn.cursor()
-
-# cur.execute("SELECT * FROM users")
-
-# print(cur.description)
-
-# for row in cur:
-#     print(row)
-
-# cur.close()
-# conn.close()
-# conn.close()
-
-
-
-
-
+connection.close()
 
 bot = telebot.TeleBot(config.token)
 
