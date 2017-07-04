@@ -35,14 +35,13 @@ def score(uid):
     results = cursor.fetchone()
     print(results)
     cursor.close()
-    return results
+    return results['score'] + '₽'
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
     uid = message.from_user.id
     uname = message.chat.first_name
     add_user(uid, uname)
-    score(uid)
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Получить воду')
     user_markup.row('Пополнить баланс')
@@ -89,9 +88,12 @@ def handle_start(message):
 
 @bot.message_handler(regexp='Баланс')
 def handle_start(message):
+    uid = message.from_user.id
+    uname = message.chat.first_name
+    res = score(uid)
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
-    bot.send_message(message.from_user.id, '150₽', reply_markup=user_markup)
+    bot.send_message(message.from_user.id, res, reply_markup=user_markup)
 
 
 
