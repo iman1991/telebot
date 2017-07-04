@@ -17,11 +17,7 @@ connection = pymysql.connect(host='127.0.0.1',
 
 bot = telebot.TeleBot(config.token)
 
-@bot.message_handler(commands=['start'])
-@bot.message_handler(regexp="Назад")
-def handle_start(message):
-    uid = message.from_user.id
-    uname = message.chat.first_name
+def add_user(uid, uname):
     cursor = connection.cursor()
     cursor.execute("SELECT idT FROM users WHERE idT = '%(uid)d'")
     results = cursor.fetchall()
@@ -33,13 +29,19 @@ def handle_start(message):
         connection.commit()   
         cursor.close()
         connection.close()
-        user_markup = telebot.types.ReplyKeyboardMarkup()
-        user_markup.row('Получить воду')
-        user_markup.row('Пополнить баланс')
-        user_markup.row('Статистика')
-        user_markup.row('Баланс')
-        bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
 
+@bot.message_handler(commands=['start'])
+@bot.message_handler(regexp="Назад")
+def handle_start(message):
+    uid = message.from_user.id
+    uname = message.chat.first_name
+    add_user(uid, uname)
+    user_markup = telebot.types.ReplyKeyboardMarkup()
+    user_markup.row('Получить воду')
+    user_markup.row('Пополнить баланс')
+    user_markup.row('Статистика')
+    user_markup.row('Баланс')
+    bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
 
 
 
