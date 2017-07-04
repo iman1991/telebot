@@ -23,7 +23,7 @@ def add_user():
     results = cursor.fetchall()
     cursor.close()
     connection.close()
-    if (uid != results)
+    if (uid != results):
         cursor = connection.cursor()
         cursor.execute("INSERT INTO users (idT, name) values ('%(uid)d', '%(uname)d')")
         connection.commit()   
