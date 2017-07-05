@@ -42,11 +42,9 @@ def score(uid):
     cursor.execute("SELECT score FROM users WHERE idT = %i" % (uid))
     results = cursor.fetchone()
     cursor.close()
-    print(results)
-    print(uid)
-    res = "{}₽".format(str(results["score"]))
-    print(res)
     connection.close()
+    print(results)
+    res = "{}₽".format(str(results["score"]))
     return res
 
 
