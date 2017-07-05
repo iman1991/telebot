@@ -43,6 +43,7 @@ def score(uid):
     results = cursor.fetchone()
     cursor.close()
     print(results)
+    print(uid)
     res = "{}₽".format(str(results["score"]))
     print(res)
     connection.close()
