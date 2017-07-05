@@ -49,6 +49,8 @@ def score(uid):
 
 @bot.message_handler(content_types=['text'])
 def prot(message):
+    uid = message.from_user.id
+    uname = message.chat.first_name
     if message.text == 'Назад':
         add_user(uid, uname)
         back(message)
@@ -72,8 +74,6 @@ def prot(message):
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
-    uid = message.from_user.id
-    uname = message.chat.first_name
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Получить воду')
     user_markup.row('Пополнить баланс')
@@ -83,8 +83,6 @@ def handle_start(message):
 
 
 def back(message):
-    uid = message.from_user.id
-    uname = message.chat.first_name
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Получить воду')
     user_markup.row('Пополнить баланс')
