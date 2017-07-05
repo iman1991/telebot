@@ -34,6 +34,7 @@ def score(uid):
     cursor.execute("SELECT score FROM users WHERE idT = %i" % (uid))
     results = cursor.fetchone()
     cursor.close()
+    print(results)
     return str(results['score']) + '₽'
 
 @bot.message_handler(commands=['start'])
