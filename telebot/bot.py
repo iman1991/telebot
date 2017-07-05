@@ -84,8 +84,7 @@ def back(message):
 
 
 
-@bot.get_water(regexp='Получить воду')
-def handle_start(message):
+def get_water(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
     sent = bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
