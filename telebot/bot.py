@@ -32,9 +32,9 @@ def add_user(uid, uname):
 def score(uid):
     cursor = connection.cursor()
     cursor.execute("SELECT score FROM users WHERE idT = %i" % (uid))
-    results = str(cursor.fetchone())
+    results = cursor.fetchone()
     cursor.close()
-    res = "{}₽".format(results["score"])
+    res = "{}₽".format(str(results["score"]))
     return res
 
 @bot.message_handler(commands=['start'])
