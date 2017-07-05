@@ -44,7 +44,7 @@ def score(uid):
 
 
 @bot.message_handler(content_types=['text'])
-def prot():
+def prot(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
     bot.send_message(message.from_user.id, 'На хату ида да ле', reply_markup=user_markup)
