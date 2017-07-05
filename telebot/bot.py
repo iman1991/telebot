@@ -29,13 +29,13 @@ def add_user(uid, uname):
         cursor.close()
         return True
 
-def score(uid):
-    cursor = connection.cursor()
-    cursor.execute("SELECT score FROM users WHERE idT = %i" % (uid))
-    results = cursor.fetchone()
-    cursor.close()
-    print(results)
-    return str(results['score']) + '₽'
+# def score(uid):
+#     cursor = connection.cursor()
+#     cursor.execute("SELECT score FROM users WHERE idT = %i" % (uid))
+#     results = cursor.fetchone()
+#     cursor.close()
+#     print(results)
+#     return str(results['score']) + '₽'
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
@@ -89,7 +89,7 @@ def handle_start(message):
 def handle_start(message):
     uid = message.from_user.id
     uname = message.chat.first_name
-    res = score(uid)
+    # res = score(uid)
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
     bot.send_message(message.from_user.id, res, reply_markup=user_markup)
