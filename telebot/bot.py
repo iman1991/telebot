@@ -52,7 +52,7 @@ def prot(message):
     elif message.text == 'Пополнить баланс':
         add_score(message)
     elif message.text == 'Баланс':
-        score(message)
+        get_score(message)
     else:
         user_markup = telebot.types.ReplyKeyboardMarkup()
         user_markup.row('Назад')
@@ -104,7 +104,7 @@ def add_score(message):
 #     bot.send_message(message.from_user.id, 'OK', reply_markup=user_markup)
 
 
-def score(message):
+def get_score(message):
     uid = message.from_user.id
     res = score(uid)
     user_markup = telebot.types.ReplyKeyboardMarkup()
