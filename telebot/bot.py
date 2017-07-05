@@ -8,12 +8,13 @@ import pymysql.cursors
 
 
 def connect():
-    return connection = pymysql.connect(host='127.0.0.1',
+    connection = pymysql.connect(host='127.0.0.1',
                                  user='root',
                                  password='7087',
                                  db='vodomat',
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
+    return connection
 
 
 bot = telebot.TeleBot(config.token)
