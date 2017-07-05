@@ -114,6 +114,8 @@ def add_score(message):
 
 def get_score(message):
     uid = message.from_user.id
+    uname = message.chat.first_name
+    add_user(uid, uname)
     res = score(uid)
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
