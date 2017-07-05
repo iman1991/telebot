@@ -35,7 +35,7 @@ def score(uid):
     results = cursor.fetchone()
     cursor.close()
     print(results)
-    res = "{}₽".format(result["score"])
+    res = "{}₽".format(results["score"])
     return res
 
 @bot.message_handler(commands=['start'])
