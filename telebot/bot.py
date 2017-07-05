@@ -19,6 +19,7 @@ def connect():
 
 bot = telebot.TeleBot(config.token)
 
+
 def add_user(uid, uname):
     connection = connect()
     cursor = connection.cursor()
@@ -40,6 +41,13 @@ def score(uid):
     cursor.close()
     res = "{}₽".format(str(results["score"]))
     return res
+
+
+@bot.message_handler(content_types=['text'])
+def prot():
+    user_markup = telebot.types.ReplyKeyboardMarkup()
+    user_markup.row('Назад')
+    bot.send_message(message.from_user.id, 'На хату ида да ле', reply_markup=user_markup)
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
