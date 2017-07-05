@@ -22,6 +22,7 @@ def add_user(uid, uname):
     cursor.execute("SELECT idT FROM users WHERE idT = %i" % (uid))
     results = cursor.fetchone()
     cursor.close()
+    print(str(results['idT']))
     if results is None or str(results['idT']) != uid:
         cursor = connection.cursor()
         cursor.execute("INSERT INTO users (idT, name, score) values ( %i, '%s', %i)" % (uid, uname, 0))
