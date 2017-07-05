@@ -7,17 +7,19 @@ import json
 import pymysql.cursors
 
 
-connection = pymysql.connect(host='127.0.0.1',
-                             user='root',
-                             password='7087',
-                             db='vodomat',
-                             charset='utf8mb4',
-                             cursorclass=pymysql.cursors.DictCursor)
+def connect():
+    return connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='7087',
+                                 db='vodomat',
+                                 charset='utf8mb4',
+                                 cursorclass=pymysql.cursors.DictCursor)
 
 
 bot = telebot.TeleBot(config.token)
 
 def add_user(uid, uname):
+    connection = connect()
     cursor = connection.cursor()
     cursor.execute("SELECT idT FROM users WHERE idT = %i" % (uid))
     results = cursor.fetchone()
@@ -30,11 +32,11 @@ def add_user(uid, uname):
         return True
 
 def score(uid):
+    connection = connect()
     cursor = connection.cursor()
     cursor.execute("SELECT score FROM users WHERE idT = %i" % (uid))
     results = cursor.fetchone()
     cursor.close()
-    print(results)
     res = "{}₽".format(str(results["score"]))
     return res
 
