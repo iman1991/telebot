@@ -32,8 +32,7 @@ def add_user(uid, uname):
 def score(uid):
     cursor = connection.cursor()
     cursor.execute("SELECT score FROM users WHERE idT = %i" % (uid))
-    results = cursor.fetchone()
-    print(results)
+    results = str(cursor.fetchone())
     cursor.close()
     res = "{}₽".format(results["score"])
     return res
@@ -89,7 +88,6 @@ def handle_start(message):
 @bot.message_handler(regexp='Баланс')
 def handle_start(message):
     uid = message.from_user.id
-    uname = message.chat.first_name
     res = score(uid)
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
