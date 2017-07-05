@@ -40,7 +40,8 @@ def score(uid):
     results = cursor.fetchone()
     cursor.close()
     res = "{}₽".format(str(results["score"]))
-    return str(res)
+    print(res)
+    return res
 
 
 @bot.message_handler(content_types=['text'])
