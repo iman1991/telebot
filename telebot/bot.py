@@ -53,6 +53,8 @@ def prot(message):
         add_score(message)
     elif message.text == 'Баланс':
         get_score(message)
+    elif message.text == '/start':
+        handle_start(message)
     else:
         user_markup = telebot.types.ReplyKeyboardMarkup()
         user_markup.row('Назад')
