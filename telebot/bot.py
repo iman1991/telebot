@@ -74,7 +74,7 @@ def prot(message):
     else:
         user_markup = telebot.types.ReplyKeyboardMarkup()
         user_markup.row('Назад')
-        bot.send_message(message.from_user.id, 'Команда не найдена', reply_markup=user_markup)
+        bot.send_message(message.from_user.id, 'Команда не найдена')
 
 
 @bot.message_handler(commands=['start'])
@@ -88,14 +88,14 @@ def back(message):
 def get_water(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
-    sent = bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
+    sent = bot.send_message(message.from_user.id, 'Введите ID водомата')
     bot.register_next_step_handler(sent, check)
 
 
 def add_score(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
-    bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
+    bot.send_message(message.from_user.id, 'Введите ID водомата')
 
 
 def get_score(message):
@@ -104,17 +104,17 @@ def get_score(message):
     res = score(uid)
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
-    bot.send_message(message.from_user.id, res, reply_markup=user_markup)
+    bot.send_message(message.from_user.id, res)
 
 
 
 def check(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     if message.text.isdigit():
-        bot.send_message(message.from_user.id, '1 литр 4₽\nПоднесите тару к водомату и нажмите кноку "Старт" на аппарате.', reply_markup=user_markup)
+        bot.send_message(message.from_user.id, '1 литр 4₽\nПоднесите тару к водомату и нажмите кноку "Старт" на аппарате.')
     elif not (message.text.isdigit()) and not "Назад":
-        bot.send_message(message.from_user.id, 'Ошибка ввода', reply_markup=user_markup)
-        bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
+        bot.send_message(message.from_user.id, 'Ошибка ввода')
+        bot.send_message(message.from_user.id, 'Введите ID водомата')
 
 
 
