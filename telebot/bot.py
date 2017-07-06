@@ -17,13 +17,11 @@ def connect():
                                  cursorclass=pymysql.cursors.DictCursor)
     return connection
 
-def menu_main(message):
+def menu_main(message, answer):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Получить воду')
     user_markup.row('Пополнить баланс')
     user_markup.row('Баланс')
-
-def get_answer(answer):
     bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
 
 def add_user(uid, uname):
@@ -78,12 +76,10 @@ def prot(message):
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
-    menu_main(message)
-    get_answer('Добро пожаловать!')
+    menu_main(message, "answer")
 
 def back(message):
-    menu_main(message)
-    get_answer('Добро пожаловать!')
+    menu_main(message, "answer")
 
 def get_water(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
