@@ -30,7 +30,7 @@ def menu_back(message):
 def get_answer(answer):
     bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
 
-def get menu(message):
+def get_menu(message):
     if message.text == 'Получить воду':
         add_user(uid, uname)
     elif message.text == 'Назад':
