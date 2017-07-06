@@ -8,22 +8,6 @@ import pymysql.cursors
 
 bot = telebot.TeleBot(config.token)
 
-def connect():
-    connection = pymysql.connect(host='127.0.0.1',
-                                 user='root',
-                                 password='7087',
-                                 db='vodomat',
-                                 charset='utf8mb4',
-                                 cursorclass=pymysql.cursors.DictCursor)
-    return connection
-menu_list = ["Получить воду", "Пополнить баланс", "Баланс"]
-
-def menu_main(message, answer):
-    user_markup = telebot.types.ReplyKeyboardMarkup()
-    for var in menu_list:
-        user_markup.row(var)
-    bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
-
 def add_user(uid, uname):
     connection = connect()
     cursor = connection.cursor()
@@ -39,6 +23,25 @@ def add_user(uid, uname):
         cursor.close()
         connection.close()
         return True
+
+def connect():
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='7087',
+                                 db='vodomat',
+                                 charset='utf8mb4',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    return connection
+menu_list = ["Получить воду", "Пополнить баланс", "Баланс", "Назад"]
+
+def menu_main(message, answer):
+    user_markup = telebot.types.ReplyKeyboardMarkup()
+    if message.text == "Назад":
+        user_markup.row("Назад")
+    else:
+        for var in menu_list:
+        user_markup.row(var)
+    bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
 
 def score(uid):
     connection = connect()
@@ -56,19 +59,19 @@ def prot(message):
     uname = message.chat.first_name
     if message.text == 'Назад':
         add_user(uid, uname)
-        back(message)
+        menu_main(message, answer)
     elif message.text == 'Получить воду':
         add_user(uid, uname)
-        get_water(message)
+        menu_main(message, answer)
     elif message.text == 'Пополнить баланс':
         add_user(uid, uname)
-        add_score(message)
+        menu_main(message, answer)
     elif message.text == 'Баланс':
         add_user(uid, uname)
-        get_score(message)
+        menu_main(message, answer)
     elif message.text == '/start':
         add_user(uid, uname)
-        handle_start(message)
+        menu_main(message, answer)
     else:
         user_markup = telebot.types.ReplyKeyboardMarkup()
         user_markup.row('Назад')
