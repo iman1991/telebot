@@ -80,13 +80,13 @@ def prot(message):
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
-    menu()
-    message_bot()
+    menu(message)
+    message_bot(message)
 
 
 def back(message):
-    menu()
-    message_bot()
+    menu(message)
+    message_bot(message)
 
 
 
