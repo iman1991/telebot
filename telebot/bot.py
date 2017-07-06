@@ -6,6 +6,7 @@ import socket
 import json
 import pymysql.cursors
 
+bot = telebot.TeleBot(config.token)
 
 def connect():
     connection = pymysql.connect(host='127.0.0.1',
@@ -16,9 +17,14 @@ def connect():
                                  cursorclass=pymysql.cursors.DictCursor)
     return connection
 
+def menu():
+    user_markup = telebot.types.ReplyKeyboardMarkup()
+    user_markup.row('Получить воду')
+    user_markup.row('Пополнить баланс')
+    user_markup.row('Баланс')
 
-bot = telebot.TeleBot(config.token)
-
+def message_bot():
+    bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
 
 def add_user(uid, uname):
     connection = connect()
@@ -74,21 +80,13 @@ def prot(message):
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
-    user_markup = telebot.types.ReplyKeyboardMarkup()
-    user_markup.row('Получить воду')
-    user_markup.row('Пополнить баланс')
-    # user_markup.row('Статистика')
-    user_markup.row('Баланс')
-    bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
+    menu()
+    message_bot()
 
 
 def back(message):
-    user_markup = telebot.types.ReplyKeyboardMarkup()
-    user_markup.row('Получить воду')
-    user_markup.row('Пополнить баланс')
-    # user_markup.row('Статистика')
-    user_markup.row('Баланс')
-    bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
+    menu()
+    message_bot()
 
 
 
