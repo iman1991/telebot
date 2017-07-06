@@ -88,11 +88,11 @@ def prot(message):
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
-    menu(message)
+    menu_main(message)
     get_answer('Добро пожаловать!')
 
 def back(message):
-    menu(message)
+    menu_main(message)
     get_answer('Добро пожаловать!')
 
 def get_water(message):
@@ -121,5 +121,7 @@ def check(message):
     elif not (message.text.isdigit()) and not "Назад":
         bot.send_message(message.from_user.id, 'Ошибка ввода', reply_markup=user_markup)
         bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
+
+
 
 bot.polling(none_stop=True, interval = 0)
