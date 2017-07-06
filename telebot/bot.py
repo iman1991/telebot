@@ -17,13 +17,13 @@ def connect():
                                  cursorclass=pymysql.cursors.DictCursor)
     return connection
 
-def menu():
+def menu(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Получить воду')
     user_markup.row('Пополнить баланс')
     user_markup.row('Баланс')
 
-def message_bot():
+def message_bot(message):
     bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
 
 def add_user(uid, uname):
