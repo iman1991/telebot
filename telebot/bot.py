@@ -59,19 +59,19 @@ def prot(message):
     uname = message.chat.first_name
     if message.text == 'Назад':
         add_user(uid, uname)
-        menu_main(message, answer)
+        menu_main(message, 'lleee')
     elif message.text == 'Получить воду':
         add_user(uid, uname)
-        menu_main(message, answer)
+        menu_main(message, 'lleee')
     elif message.text == 'Пополнить баланс':
         add_user(uid, uname)
-        menu_main(message, answer)
+        menu_main(message, 'lleee')
     elif message.text == 'Баланс':
         add_user(uid, uname)
-        menu_main(message, answer)
+        menu_main(message, 'lleee')
     elif message.text == '/start':
         add_user(uid, uname)
-        menu_main(message, answer)
+        menu_main(message, 'lleee')
     else:
         user_markup = telebot.types.ReplyKeyboardMarkup()
         user_markup.row('Назад')
