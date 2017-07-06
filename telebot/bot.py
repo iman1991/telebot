@@ -74,7 +74,6 @@ def prot(message):
         user_markup.row('Назад')
         bot.send_message(message.from_user.id, 'Команда не найдена', reply_markup=user_markup)
 
-@bot.message_handler(commands=['start'])
 def handle_start(message):
     menu_main(message, "answer")
 
