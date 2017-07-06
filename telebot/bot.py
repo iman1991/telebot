@@ -16,7 +16,7 @@ list_menu = ["Получить воду", "Пополнить баланс", "Б
 
 def menu_main(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
-    for var in list_menu
+    for var in 'list_menu'
         user_markup.row(var)
 
 def menu_back(message):
