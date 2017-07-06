@@ -9,21 +9,28 @@ import pymysql.cursors
 bot = telebot.TeleBot(config.token)
 
 def connect():
-    connection = pymysql.connect(host='127.0.0.1',
-                                 user='root',
-                                 password='7087',
-                                 db='vodomat',
-                                 charset='utf8mb4',
-                                 cursorclass=pymysql.cursors.DictCursor)
+    connection = pymysql.connect(host='127.0.0.1', user='root', password='7087', db='vodomat', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
     return connection
 
-def menu(message, answer):
+list_menu = ["Получить воду", "Пополнить баланс", "Баланс"]
+
+def menu_main(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
-    user_markup.row('Получить воду')
-    user_markup.row('Пополнить баланс')
-    user_markup.row('Баланс')
+    for var in list_menu
+        user_markup.row(var)
+
+def menu_back(message):
+    user_markup = telebot.types.ReplyKeyboardMarkup()
+    user_markup.row('Назад')
+
+def get_answer(answer):
     bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
 
+def get menu(message):
+    if message.text == 'Получить воду':
+        add_user(uid, uname)
+    elif message.text == 'Назад':
+        menu_back()
 
 def add_user(uid, uname):
     connection = connect()
@@ -51,7 +58,6 @@ def score(uid):
     res = "{}₽".format(str(results["score"]))
     return res
 
-
 @bot.message_handler(content_types=['text'])
 def prot(message):
     uid = message.from_user.id
@@ -76,14 +82,14 @@ def prot(message):
         user_markup.row('Назад')
         bot.send_message(message.from_user.id, 'Команда не найдена', reply_markup=user_markup)
 
-
 @bot.message_handler(commands=['start'])
 def handle_start(message):
-    menu(message, 'Добро пожаловать!')
+    menu(message)
+    get_answer('Добро пожаловать!')
 
 def back(message):
-    menu(message, 'Добро пожаловать!')
-
+    menu(message)
+    get_answer('Добро пожаловать!')
 
 def get_water(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
@@ -91,12 +97,10 @@ def get_water(message):
     sent = bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
     bot.register_next_step_handler(sent, check)
 
-
 def add_score(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
     bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
-
 
 def get_score(message):
     uid = message.from_user.id
@@ -106,8 +110,6 @@ def get_score(message):
     user_markup.row('Назад')
     bot.send_message(message.from_user.id, res, reply_markup=user_markup)
 
-
-
 def check(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     if message.text.isdigit():
@@ -115,7 +117,5 @@ def check(message):
     elif not (message.text.isdigit()) and not "Назад":
         bot.send_message(message.from_user.id, 'Ошибка ввода', reply_markup=user_markup)
         bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
-
-
 
 bot.polling(none_stop=True, interval = 0)
