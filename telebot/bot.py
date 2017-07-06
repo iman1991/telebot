@@ -40,8 +40,8 @@ def menu_main(message, answer):
         user_markup.row("Назад")
     else:
         for var in menu_list:
-        user_markup.row(var)
-    bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
+            user_markup.row(var)
+        bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
 
 def score(uid):
     connection = connect()
