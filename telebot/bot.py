@@ -12,7 +12,7 @@ def connect():
     connection = pymysql.connect(host='127.0.0.1', user='root', password='7087', db='vodomat', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
     return connection
 
-list_menu = ["Получить воду", "Пополнить баланс", "Баланс"]
+list_menu = ["Получить воду", "Пополнить баланс", "Баланс", "Назад"]
 
 def menu_main(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
@@ -21,7 +21,7 @@ def menu_main(message):
 
 def menu_back(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
-    user_markup.row('Главное меню')
+    user_markup.row('Назад')
 
 def get_answer(answer):
     bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
@@ -29,7 +29,7 @@ def get_answer(answer):
 # def get menu(message):
 #     if message.text == 'Получить воду':
 #         add_user(uid, uname)
-#     elif message.text == 'Главное меню':
+#     elif message.text == 'Назад':
 #         menu_back()
 
 def add_user(uid, uname):
@@ -62,7 +62,7 @@ def score(uid):
 def prot(message):
     uid = message.from_user.id
     uname = message.chat.first_name
-    if message.text == 'Главное меню':
+    if message.text == 'Назад':
         add_user(uid, uname)
         back(message)
     elif message.text == 'Получить воду':
@@ -79,7 +79,7 @@ def prot(message):
         handle_start(message)
     else:
         user_markup = telebot.types.ReplyKeyboardMarkup()
-        user_markup.row('Главное меню')
+        user_markup.row('Назад')
         bot.send_message(message.from_user.id, 'Команда не найдена', reply_markup=user_markup)
 
 @bot.message_handler(commands=['start'])
@@ -93,13 +93,13 @@ def back(message):
 
 def get_water(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
-    user_markup.row('Главное меню')
+    user_markup.row('Назад')
     sent = bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
     bot.register_next_step_handler(sent, check)
 
 def add_score(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
-    user_markup.row('Главное меню')
+    user_markup.row('Назад')
     bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
 
 def get_score(message):
@@ -107,14 +107,14 @@ def get_score(message):
     uname = message.chat.first_name
     res = score(uid)
     user_markup = telebot.types.ReplyKeyboardMarkup()
-    user_markup.row('Главное меню')
+    user_markup.row('Назад')
     bot.send_message(message.from_user.id, res, reply_markup=user_markup)
 
 def check(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     if message.text.isdigit():
         bot.send_message(message.from_user.id, '1 литр 4₽\nПоднесите тару к водомату и нажмите кноку "Старт" на аппарате.', reply_markup=user_markup)
-    elif not (message.text.isdigit()) and not "Главное меню":
+    elif not (message.text.isdigit()) and not "Назад":
         bot.send_message(message.from_user.id, 'Ошибка ввода', reply_markup=user_markup)
         bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
 
