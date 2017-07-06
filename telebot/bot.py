@@ -26,11 +26,11 @@ def menu_back(message):
 def get_answer(answer):
     bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
 
-def get menu(message):
-    if message.text == 'Получить воду':
-        add_user(uid, uname)
-    elif message.text == 'Назад':
-        menu_back()
+# def get menu(message):
+#     if message.text == 'Получить воду':
+#         add_user(uid, uname)
+#     elif message.text == 'Назад':
+#         menu_back()
 
 def add_user(uid, uname):
     connection = connect()
