@@ -17,7 +17,7 @@ def connect():
                                  cursorclass=pymysql.cursors.DictCursor)
     return connection
 
-def menu(message):
+def inline menu(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Получить воду')
     user_markup.row('Пополнить баланс')
