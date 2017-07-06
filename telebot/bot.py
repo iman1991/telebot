@@ -16,12 +16,12 @@ def connect():
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
     return connection
+menu_list = ["Получить воду", "Пополнить баланс", "Баланс"]
 
 def menu_main(message, answer):
     user_markup = telebot.types.ReplyKeyboardMarkup()
-    user_markup.row('Получить воду')
-    user_markup.row('Пополнить баланс')
-    user_markup.row('Баланс')
+    for var in 'menu_main':
+        user_markup.row(var)
     bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
 
 def add_user(uid, uname):
