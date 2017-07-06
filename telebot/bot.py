@@ -79,11 +79,11 @@ def prot(message):
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
-    menu(message)
+    menu('Добро пожаловать!')
 
 
 def back(message):
-    menu(message)
+    menu('Добро пожаловать!')
 
 
 def get_water(message):
