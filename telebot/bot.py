@@ -24,7 +24,7 @@ def menu(message):
     user_markup.row('Баланс')
 
 def message_bot(message):
-    bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
+    bot.send_message(message.from_user.id, 'Добро пожаловать')
 
 def add_user(uid, uname):
     connection = connect()
