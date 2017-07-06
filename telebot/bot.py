@@ -9,15 +9,19 @@ import pymysql.cursors
 bot = telebot.TeleBot(config.token)
 
 def connect():
-    connection = pymysql.connect(host='127.0.0.1', user='root', password='7087', db='vodomat', charset='utf8mb4', cursorclass=pymysql.cursors.DictCursor)
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='7087',
+                                 db='vodomat',
+                                 charset='utf8mb4',
+                                 cursorclass=pymysql.cursors.DictCursor)
     return connection
-
-list_menu = ["Получить воду", "Пополнить баланс", "Баланс", "Назад"]
 
 def menu_main(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
-    for var in 'list_menu':
-        user_markup.row(var)
+    user_markup.row('Получить воду')
+    user_markup.row('Пополнить баланс')
+    user_markup.row('Баланс')
 
 def menu_back(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
@@ -26,11 +30,11 @@ def menu_back(message):
 def get_answer(answer):
     bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
 
-# def get menu(message):
-#     if message.text == 'Получить воду':
-#         add_user(uid, uname)
-#     elif message.text == 'Назад':
-#         menu_back()
+def get menu(message):
+    if message.text == 'Получить воду':
+        add_user(uid, uname)
+    elif message.text == 'Назад':
+        menu_back()
 
 def add_user(uid, uname):
     connection = connect()
