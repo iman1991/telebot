@@ -91,7 +91,7 @@ def back(message):
     user_markup.row('Пополнить баланс')
     # user_markup.row('Статистика')
     user_markup.row('Баланс')
-    answer_text(message, 'Добро пожаловать')
+    bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
 
 
 def get_water(message):
