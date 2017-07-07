@@ -46,7 +46,7 @@ def score(uid):
     res = "{}₽".format(str(results["score"]))
     return res
 
-def answer_text(message, answer)
+def answer_text(message, answer):
     bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
 
 
