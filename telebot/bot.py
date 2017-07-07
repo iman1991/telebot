@@ -47,7 +47,7 @@ def score(uid):
     return res
 
 def answer_text(message, answer):
-    bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
+    bot.send_message(message.from_user.id, answer)
 
 
 @bot.message_handler(content_types=['text'])
@@ -91,7 +91,7 @@ def back(message):
     user_markup.row('Пополнить баланс')
     # user_markup.row('Статистика')
     user_markup.row('Баланс')
-    bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
+    answer_text(message, 'Добро пожаловать')
 
 
 def get_water(message):
