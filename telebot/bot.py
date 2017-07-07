@@ -35,6 +35,7 @@ def connect():
 menu_list = ["Получить воду", "Пополнить баланс", "Баланс", "Назад"]
 
 def menu_main(message, answer):
+    user_markup = telebot.types.ReplyKeyboardMarkup()
     for var in menu_list:
         user_markup.row(var)
     bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
