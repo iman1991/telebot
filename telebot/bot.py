@@ -116,7 +116,7 @@ bot = telebot.TeleBot(config.token)
 @bot.message_handler(commands=['start'])
 def start(message):
     sent = bot.send_message(message.chat.id, 'Как тебя зовут?')
-    bot.send_message(message.from_user.id, 'Серьезно?', reply_markup=user_markup)
+    bot.send_message(message.from_user.id, 'Серьезно?')
     bot.register_next_step_handler(sent, hello)
 
 def hello(message):
