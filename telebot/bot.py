@@ -75,6 +75,8 @@ def prot(message):
         add_user(uid, uname)
         menu_main(message, 'lleee')
     else:
+        user_markup = telebot.types.ReplyKeyboardMarkup()
+        user_markup.row('Назад')
         bot.send_message(message.from_user.id, 'Команда не найдена', reply_markup=user_markup)
 
 def handle_start(message):
