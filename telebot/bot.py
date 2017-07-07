@@ -35,13 +35,15 @@ def connect():
 menu_list = ["Получить воду", "Пополнить баланс", "Баланс", "Назад"]
 
 def menu_main(message, answer):
+    for var in menu_list:
+        user_markup.row(var)
+    bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
+
+def get_water(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
-    if message.text == "Назад":
-        user_markup.row("Назад")
-    else:
-        for var in menu_list:
-            user_markup.row(var)
-        bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
+    user_markup.row('Назад')
+    sent = bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
+    bot.register_next_step_handler(sent, check)
 
 def score(uid):
     connection = connect()
@@ -73,8 +75,6 @@ def prot(message):
         add_user(uid, uname)
         menu_main(message, 'lleee')
     else:
-        user_markup = telebot.types.ReplyKeyboardMarkup()
-        user_markup.row('Назад')
         bot.send_message(message.from_user.id, 'Команда не найдена', reply_markup=user_markup)
 
 def handle_start(message):
