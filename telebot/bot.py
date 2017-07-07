@@ -46,6 +46,9 @@ def score(uid):
     res = "{}₽".format(str(results["score"]))
     return res
 
+def answer_text(message, answer)
+    bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
+
 
 @bot.message_handler(content_types=['text'])
 def prot(message):
@@ -69,7 +72,7 @@ def prot(message):
     else:
         user_markup = telebot.types.ReplyKeyboardMarkup()
         user_markup.row('Назад')
-        bot.send_message(message.from_user.id, 'Команда не найдена', reply_markup=user_markup)
+        answer_text(message, 'Команда не найдена')
 
 
 @bot.message_handler(commands=['start'])
@@ -79,7 +82,7 @@ def handle_start(message):
     user_markup.row('Пополнить баланс')
     # user_markup.row('Статистика')
     user_markup.row('Баланс')
-    bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
+    answer_text(message, 'Добро пожаловать')
 
 
 def back(message):
@@ -88,8 +91,7 @@ def back(message):
     user_markup.row('Пополнить баланс')
     # user_markup.row('Статистика')
     user_markup.row('Баланс')
-    bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
-
+    answer_text(message, 'Добро пожаловать')
 
 
 def get_water(message):
@@ -102,7 +104,7 @@ def get_water(message):
 def add_score(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
-    bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
+    answer_text(message, 'Введите ID водомата')
 
 
 # @bot.message_handler(regexp='Статистика')
@@ -118,18 +120,17 @@ def get_score(message):
     res = score(uid)
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
-    bot.send_message(message.from_user.id, res, reply_markup=user_markup)
+    answer_text(message, res)
 
 
 
 def check(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     if message.text.isdigit():
-        bot.send_message(message.from_user.id, '1 литр 4₽\nПоднесите тару к водомату и нажмите кноку "Старт" на аппарате.', reply_markup=user_markup)
+        answer_text(message, '1 литр 4₽\nПоднесите тару к водомату и нажмите кноку "Старт" на аппарате.')
     elif not (message.text.isdigit()) and not "Назад":
-        bot.send_message(message.from_user.id, 'Ошибка ввода', reply_markup=user_markup)
-        bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
-
+        answer_text(message, 'Ошибка ввода')
+        answer_text(message, 'Введите ID водомата')
 
 
 bot.polling(none_stop=True, interval = 0)
