@@ -161,8 +161,8 @@ def connect():
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
 
-main_menu_list = ["Получить воду", "Пополнить баланс", "Баланс"]
-back_menu_list = ["Назад"]
+main_menu_list = {"Получить воду": "Получить воду", "Пополнить баланс": "Пополнить баланс", "Баланс": "Баланс"}
+back_menu_list = {"Назад": "Назад"}
 comands = ["Получить воду", "Пополнить баланс", "Баланс", "Назад", "/start"]
 
 def generator_menu(message, menu_list):
