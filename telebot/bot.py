@@ -170,7 +170,7 @@ def generator_menu(message, menu_list):
     for item in menu_list:
         user_markup.row(item)
 
-def answer_text(message, answer)
+def answer_text(message, answer):
     bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
 
 def handler_menu(message, menu_list):
@@ -182,7 +182,7 @@ def handler_menu(message, menu_list):
         handler_choise_menu(message)
 
 
-def handler_choise_menu(message):
+# def handler_choise_menu(message):
     
 
 @bot.message_handler(commands=['start'])
