@@ -207,7 +207,7 @@ def handler_menu(message):
         return main_menu_list
 
 
-@bot.message_handler(commands=['start'])
+@bot.message_handler(regexp=['Получить воду'])
 def handle_start(message):
     answer_text(message, 'Добро пожаловать!')
     displaying_menu(message)
