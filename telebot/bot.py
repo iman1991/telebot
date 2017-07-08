@@ -171,7 +171,7 @@ def answer_text(message, answer):
 def generator_menu(message, menu_list):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     for item in menu_list:
-        user_markup.row(item)
+        user_markup.row(menu_list[item])
 
 
 def displaying_menu(message):
