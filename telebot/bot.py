@@ -171,7 +171,7 @@ def generator_menu(message, menu_list):
         user_markup.row(item)
 
 def answer_text(message, answer):
-    bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
+    bot.send_message(message.from_user.id, answer)
 
 # def handler_menu(message, menu_list):
 #     try:
