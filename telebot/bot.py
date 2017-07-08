@@ -76,6 +76,7 @@ def prot(message):
 @bot.message_handler(commands=['start'])
 def handle_start(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
+    print(user_markup.row('Получить воду'))
     user_markup.row('Получить воду')
     user_markup.row('Пополнить баланс')
     # user_markup.row('Статистика')
