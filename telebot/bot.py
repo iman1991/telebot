@@ -180,7 +180,7 @@ def handler_menu(message, menu_list):
         answer_text(message, "Ошибка ввода!")
     else:
         @bot.message_handler(regexp=menu_list[message.text])
-        handler_choise_menu(message, menu_list)
+        # handler_choise_menu(message, menu_list)
 
 
 # def handler_choise_menu(message, menu_list):
@@ -188,7 +188,7 @@ def handler_menu(message, menu_list):
 
 @bot.message_handler(commands=['start'])
     answer_text(message, 'Добро пожаловать!')
-    main_menu(message)
+    generator_menu(message)
 
 
 # handler_menu(message, main_menu_list)
