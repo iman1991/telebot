@@ -164,6 +164,7 @@ def connect():
 main_menu_list = {"Получить воду": "Получить воду", "Пополнить баланс": "Пополнить баланс", "Баланс": "Баланс"}
 back_menu_list = {"Назад": "Назад"}
 commands_menu_list = {"start": "start"}
+menu_names = {"main_menu_list": "main_menu_list", "back_menu_list": "back_menu_list", "commands_menu_list": "commands_menu_list"}
 
 def answer_text(message, answer):
     bot.send_message(message.from_user.id, answer)
@@ -177,7 +178,7 @@ def generator_menu(message, menu_list):
 def displaying_menu(message):
     if handler_menu(message):
         menu_list = handler_menu(message)
-        # @bot.message_handler(regexp=menu_list[message.text])
+        @bot.message_handler(regexp=menu_list[message.text])
         generator_menu(message, menu_list)
     else:
         answer_text(message, "Ошибка ввода!")
@@ -185,35 +186,22 @@ def displaying_menu(message):
 
 
 def handler_menu(message):
-    try:
-        main_menu_list[message.text]
-    except KeyError:
-        pass
-    else:
-        return back_menu_list
+    for item in menu_names:
+        try:
+            item[message.text]
+        except KeyError:
+            pass
+        else:
+            return back_menu_list
+    return False     
 
-    try:
-        back_menu_list[message.text]
-    except KeyError:
-        pass
-    else:
-        return main_menu_list
-
-    try:
-        commands_menu_list[message.text]
-    except KeyError:
-        pass
-    else:
-        return main_menu_list
-
-
-@bot.message_handler(regexp=['Получить воду'])
+@bot.message_handler(commands=['start'])
 def handle_start(message):
     answer_text(message, 'Добро пожаловать!')
     displaying_menu(message)
 
 
-# displaying_menu(message)
+displaying_menu(message)
 
 
 
