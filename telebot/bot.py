@@ -183,7 +183,7 @@ def handler_menu(message, menu_list):
         handler_choise_menu(message, menu_list)
 
 
-def handler_choise_menu(message, menu_list):
+# def handler_choise_menu(message, menu_list):
     
 
 @bot.message_handler(commands=['start'])
