@@ -163,34 +163,57 @@ def connect():
 
 main_menu_list = {"Получить воду": "Получить воду", "Пополнить баланс": "Пополнить баланс", "Баланс": "Баланс"}
 back_menu_list = {"Назад": "Назад"}
-comands = ["Получить воду", "Пополнить баланс", "Баланс", "Назад", "/start"]
+commands_menu_list = {"start": "start"}
+
+def answer_text(message, answer):
+    bot.send_message(message.from_user.id, answer)
 
 def generator_menu(message, menu_list):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     for item in menu_list:
         user_markup.row(item)
 
-def answer_text(message, answer):
-    bot.send_message(message.from_user.id, answer)
 
-# def handler_menu(message, menu_list):
-#     try:
-#         menu_list[message.text]
-#     except KeyError:
-#         answer_text(message, "Ошибка ввода!")
-#     else:
-#         @bot.message_handler(regexp=menu_list[message.text])
-#         handler_choise_menu(message)
+def displaying_menu(message):
+    if handler_menu(message):
+        menu_list = handler_menu(message)
+        @bot.message_handler(regexp=menu_list[message.text])
+        generator_menu(message, menu_list)
+    else:
+        answer_text(message, "Ошибка ввода!")
 
-    
+
+
+def handler_menu(message):
+    try:
+        main_menu_list[message.text]
+    except KeyError:
+        pass
+    else:
+        return back_menu_list
+
+    try:
+        back_menu_list[message.text]
+    except KeyError:
+        pass
+    else:
+        return main_menu_list
+
+    try:
+        commands_menu_list[message.text]
+    except KeyError:
+        pass
+    else:
+        return main_menu_list
+
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
     answer_text(message, 'Добро пожаловать!')
-    generator_menu(message, main_menu_list)
+    displaying_menu(message)
 
 
-# handler_menu(message, main_menu_list)
+handler_menu(message)
 
 
 
