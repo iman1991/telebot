@@ -190,7 +190,7 @@ def handler_menu(message, menu_list):
     main_menu(message)
 
 
-
+handler_menu(message, main_menu_list)
 
 
 
