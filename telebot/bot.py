@@ -173,17 +173,15 @@ def generator_menu(message, menu_list):
 def answer_text(message, answer):
     bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
 
-def handler_menu(message, menu_list):
-    try:
-        menu_list[message.text]
-    except KeyError:
-        answer_text(message, "Ошибка ввода!")
-    # else:
-    #     @bot.message_handler(regexp=menu_list[message.text])
-        # handler_choise_menu(message, menu_list)
+# def handler_menu(message, menu_list):
+#     try:
+#         menu_list[message.text]
+#     except KeyError:
+#         answer_text(message, "Ошибка ввода!")
+#     else:
+#         @bot.message_handler(regexp=menu_list[message.text])
+#         handler_choise_menu(message)
 
-
-# def handler_choise_menu(message, menu_list):
     
 
 @bot.message_handler(commands=['start'])
