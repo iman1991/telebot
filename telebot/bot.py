@@ -178,8 +178,8 @@ def handler_menu(message, menu_list):
         menu_list[message.text]
     except KeyError:
         answer_text(message, "Ошибка ввода!")
-    else:
-        @bot.message_handler(regexp=menu_list[message.text])
+    # else:
+    #     @bot.message_handler(regexp=menu_list[message.text])
         # handler_choise_menu(message, menu_list)
 
 
