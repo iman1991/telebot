@@ -178,7 +178,7 @@ def displaying_menu(message):
     if handler_menu(message):
         menu_list = handler_menu(message)
         @bot.message_handler(regexp=menu_list[message.text])
-        generator_menu(message, menu_list)
+        answer_text(message, "Ошибка ввода!")
     else:
         answer_text(message, "Ошибка ввода!")
 
