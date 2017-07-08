@@ -187,7 +187,7 @@ def answer_text(message, answer):
 @bot.message_handler(commands=['start'])
 def handle_start(message):
     answer_text(message, 'Добро пожаловать!')
-    generator_menu(message)
+    generator_menu(message, main_menu_list)
 
 
 # handler_menu(message, main_menu_list)
