@@ -176,23 +176,22 @@ def generator_menu(message, menu_list):
 
 
 def displaying_menu(message):
-    if handler_menu(message):
-        menu_list = handler_menu(message)
+    if handler_menu(message, menu_names):
+        menu_list = handler_menu(message, menu_names)
         @bot.message_handler(regexp=menu_list[message.text])
         generator_menu(message, menu_list)
     else:
         answer_text(message, "Ошибка ввода!")
 
 
-
-def handler_menu(message):
+def handler_menu(message, menu_names):
     for item in menu_names:
         try:
-            item[message.text]
+            menu_names[message.text]
         except KeyError:
             pass
         else:
-            return back_menu_list
+            return item
     return False     
 
 @bot.message_handler(commands=['start'])
