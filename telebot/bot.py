@@ -213,7 +213,7 @@ def handle_start(message):
     displaying_menu(message)
 
 
-displaying_menu(message)
+# displaying_menu(message)
 
 
 
