@@ -177,7 +177,7 @@ def generator_menu(message, menu_list):
 def displaying_menu(message):
     if handler_menu(message):
         menu_list = handler_menu(message)
-        
+
         generator_menu(message, menu_list)
     else:
         answer_text(message, "Ошибка ввода!")
@@ -213,7 +213,6 @@ def handle_start(message):
     displaying_menu(message)
 
 
-handler_menu(message)
 
 
 
