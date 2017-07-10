@@ -137,8 +137,6 @@ def check(message):
         bot.send_message(message.from_user.id, 'Ошибка ввода', reply_markup=user_markup)
         bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
 
-        idU = message.from_user.id
-                Ubalnc = userbd.get_balance(idU)
 
 
 
