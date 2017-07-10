@@ -6,10 +6,6 @@ import socket
 import json
 import pymysql.cursors
 
-infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
-sock = socket.socket()
-sock.connect(('192.168.10.32', 9090))
-
 def connect():
     connection = pymysql.connect(host='127.0.0.1',
                                  user='root',
@@ -22,6 +18,9 @@ def connect():
 
 bot = telebot.TeleBot(config.token)
 
+infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
+sock = socket.socket()
+sock.connect(('192.168.10.32', 9090))
 
 def add_user(uid, uname):
     connection = connect()
