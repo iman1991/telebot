@@ -8,7 +8,7 @@ import pymysql.cursors
 
 infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
 sock = socket.socket()
-sock.connect(('192.168.10.32', 8080))
+sock.connect(('192.168.10.32', 9090))
 
 def connect():
     connection = pymysql.connect(host='127.0.0.1',
@@ -123,7 +123,7 @@ def get_score(message):
 
 def check(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
-    infuser['param']['idv'] = message.text
+    infuser['param']['idv'] = message.text7-
     if message.text.isdigit():
         bot.send_message(message.from_user.id, '1 литр 4₽\nПоднесите тару к водомату и нажмите кноку "Старт" на аппарате.', reply_markup=user_markup)
     elif not (message.text.isdigit()) and not "Назад":
