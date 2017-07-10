@@ -9,7 +9,7 @@ import pymysql.cursors
 infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
 
 sock = socket.socket()
-sock.bind(('192.168.10.32', 9090))
+sock.connect(('192.168.10.32', 9090))
 sock.listen(1)
 conn, addr = sock.accept()
 
@@ -23,7 +23,7 @@ while True:
 conn.close()
 
 
-# sock.connect(('192.168.10.32', 9090))
+
 
 def connect():
     connection = pymysql.connect(host='127.0.0.1',
