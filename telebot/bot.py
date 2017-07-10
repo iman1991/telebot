@@ -8,7 +8,7 @@ import pymysql.cursors
 
 infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
 sock = socket.socket()
-sock.connect(('localhost', 8080))
+sock.connect(('192.168.10.32', 8080))
 
 def connect():
     connection = pymysql.connect(host='127.0.0.1',
@@ -108,13 +108,6 @@ def add_score(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
     bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
-
-
-# @bot.message_handler(regexp='Статистика')
-# def handle_start(message):
-#     user_markup = telebot.types.ReplyKeyboardMarkup()
-#     user_markup.row('Назад')
-#     bot.send_message(message.from_user.id, 'OK', reply_markup=user_markup)
 
 
 def get_score(message):
