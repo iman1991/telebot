@@ -6,6 +6,53 @@ import socket
 import json
 import pymysql.cursors
 
+class SocketLineReader:
+    def __init__(self, socket):
+        self.socket = socket
+        self._buffer = b''
+
+    def readline(self):
+        pre, separator, post = self._buffer.partition(b'\n')
+        if separator:
+            self._buffer = post
+            return pre + separator
+
+        while True:
+            data = self.socket.recv(1024)
+            if not data:
+                return None
+
+            pre, separator, post = data.partition(b'\n')
+            if not separator:
+                self._buffer += data
+            else:
+                data = self._buffer + pre + separator
+                self._buffer = post
+                return data
+
+
+import socket
+
+sock = socket.socket()
+sock.bind(('192.168.10.32', 9090))
+sock.listen(1)
+
+conn, addr = sock.accept()
+
+print('connected:', addr)
+
+reader = SocketLineReader(conn)
+while True:
+    data = reader.readline()
+    print(data)
+    if not data:
+        break
+    conn.send(data.upper())
+
+conn.close()
+
+
+
 infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
 sock = socket.socket()
 sock.connect(('192.168.10.32', 9090))
