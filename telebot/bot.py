@@ -6,6 +6,9 @@ import socket
 import json
 import pymysql.cursors
 
+infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
+sock = socket.socket()
+sock.connect(('localhost', 8080))
 
 def connect():
     connection = pymysql.connect(host='127.0.0.1',
@@ -50,6 +53,7 @@ def score(uid):
 
 @bot.message_handler(content_types=['text'])
 def prot(message):
+    infuser['param']['idT'] = message.from_user.id
     uid = message.from_user.id
     uname = message.chat.first_name
     if message.text == 'Назад':
@@ -117,6 +121,7 @@ def get_score(message):
     uid = message.from_user.id
     uname = message.chat.first_name
     res = score(uid)
+    Ubalnc = res
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
     bot.send_message(message.from_user.id, res, reply_markup=user_markup)
@@ -125,11 +130,16 @@ def get_score(message):
 
 def check(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
+    infuser['param']['idv'] = message.text
     if message.text.isdigit():
         bot.send_message(message.from_user.id, '1 литр 4₽\nПоднесите тару к водомату и нажмите кноку "Старт" на аппарате.', reply_markup=user_markup)
     elif not (message.text.isdigit()) and not "Назад":
         bot.send_message(message.from_user.id, 'Ошибка ввода', reply_markup=user_markup)
         bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
+
+        idU = message.from_user.id
+                Ubalnc = userbd.get_balance(idU)
+
 
 
 
