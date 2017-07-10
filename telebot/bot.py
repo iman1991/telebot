@@ -6,50 +6,26 @@ import socket
 import json
 import pymysql.cursors
 
-class SocketLineReader:
-    def __init__(self, socket):
-        self.socket = socket
-        self._buffer = b''
-
-    def readline(self):
-        pre, separator, post = self._buffer.partition(b'\n')
-        if separator:
-            self._buffer = post
-            return pre + separator
-
-        while True:
-            data = self.socket.recv(1024)
-            if not data:
-                return None
-
-            pre, separator, post = data.partition(b'\n')
-            if not separator:
-                self._buffer += data
-            else:
-                data = self._buffer + pre + separator
-                self._buffer = post
-                return data
-
-
 import socket
+import time
 
-sock = socket.socket()
-sock.bind(('192.168.10.32', 9090))
-sock.listen(1)
+host = "192.168.10.32"
+port = 9090
 
-conn, addr = sock.accept()
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect((host, port))
+print(s.recv(1024).decode('utf8'))
 
-print('connected:', addr)
-
-reader = SocketLineReader(conn)
 while True:
-    data = reader.readline()
-    print(data)
-    if not data:
+    buf = input()
+    s.send(buf.encode('utf8'))
+    result = s.recv(1024)
+    print('Ответ сервера: ', result.decode('utf8'))
+    if buf == "exit":
         break
-    conn.send(data.upper())
+s.close()
 
-conn.close()
+time.sleep(10)
 
 
 
