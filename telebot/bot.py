@@ -6,29 +6,6 @@ import socket
 import json
 import pymysql.cursors
 
-import socket
-import time
-
-host = "192.168.10.32"
-port = 9090
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((host, port))
-print(s.recv(1024).decode('utf8'))
-
-while True:
-    buf = input()
-    s.send(buf.encode('utf8'))
-    result = s.recv(1024)
-    print('Ответ сервера: ', result.decode('utf8'))
-    if buf == "exit":
-        break
-s.close()
-
-time.sleep(10)
-
-
-
 infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
 sock = socket.socket()
 sock.connect(('192.168.10.32', 9090))
