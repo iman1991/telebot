@@ -134,7 +134,7 @@ def check(message):
         global infuser
         infuser['param']['idv'] = int(message.text)
         infuser['param']['idT'] = message.from_user.id
-        infuser['param']['score'] = res
+        infuser['param']['score'] = int(res)
         bot.send_message(message.from_user.id, '1 литр 4₽\nПоднесите тару к водомату и нажмите кноку "Старт" на аппарате.', reply_markup=user_markup)
         j = json.dumps(infuser)
         sock.send(j.encode("utf-8"))
@@ -149,8 +149,6 @@ def check(message):
 
 
 bot.polling(none_stop=True, interval = 0)
-
-
 
 
 
