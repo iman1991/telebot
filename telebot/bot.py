@@ -128,10 +128,13 @@ def get_score(message):
 def check(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     if message.text.isdigit():
+        uid = message.from_user.id
+        uname = message.chat.first_name
+        res = score(uid)
         global infuser
         infuser['param']['idv'] = int(message.text)
         infuser['param']['idT'] = message.from_user.id
-        infuser['param']['score'] = 1234
+        infuser['param']['score'] = res
         bot.send_message(message.from_user.id, '1 литр 4₽\nПоднесите тару к водомату и нажмите кноку "Старт" на аппарате.', reply_markup=user_markup)
         j = json.dumps(infuser)
         sock.send(j.encode("utf-8"))
