@@ -92,26 +92,11 @@ def handle_start(message):
 def handle_start(message):
     generator_menu(message, back_menu_list)
 
-@bot.message_handler(regexp='Баланс')
-def handle_start(message):
-    generator_menu(message, back_menu_list)
-
-@bot.message_handler(regexp='Назад')
-def handle_start(message):
-    generator_menu(message, main_menu_list)
-
-@bot.message_handler(content_types=['text'])
-def handle_start(message):
-    answer_text(message, text_error)
-
-
 def get_water(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
     sent = bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
     bot.register_next_step_handler(sent, check)
-
-
 
 def check(message):
     uid = message.from_user.id
@@ -133,6 +118,25 @@ def check(message):
         bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
 
 
+
+
+@bot.message_handler(regexp='Баланс')
+def handle_start(message):
+    generator_menu(message, back_menu_list)
+
+@bot.message_handler(regexp='Назад')
+def handle_start(message):
+    generator_menu(message, main_menu_list)
+
+
+
+
+
+
+
+@bot.message_handler(content_types=['text'])
+def handle_start(message):
+    answer_text(message, text_error)
 
 bot.polling(none_stop=True, interval = 0)
 
