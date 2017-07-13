@@ -1,3 +1,5 @@
+import telebot
+
 def answer_text(message, answer, user_markup):
     bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
 
