@@ -21,8 +21,6 @@ def get_score(message):
     return res
 
 def check(message):
-    uid = message.from_user.id
-    res = inDB.score(uid)
     if message.text.isdigit():
         # global infuser
         # infuser['param']['idv'] = int(message.text)
