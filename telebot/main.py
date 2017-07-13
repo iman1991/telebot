@@ -43,19 +43,12 @@ def handle_start(message):
 
 @bot.message_handler(regexp='Баланс')
 def handle_start(message):
-    handlers.answer_text(message, "{}₽".format(get_score(message)), handlers.generator_menu(message, back_menu_list))
+    handlers.answer_text(message, "{}₽".format(taking.get_score(message)), handlers.generator_menu(message, back_menu_list))
 
 @bot.message_handler(regexp='Назад')
 def handle_start(message):
     handlers.answer_text(message, text_get, handlers.generator_menu(message, main_menu_list))
 
-
-
-
-def get_score(message):
-    uid = message.from_user.id
-    res = inDB.score(uid)
-    return res
 
 
 
