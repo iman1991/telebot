@@ -62,6 +62,7 @@ def generator_menu(message, menu_list):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Получить воду')
     user_markup.row('Пополнить баланс')
+    bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
     # for item in menu_list:
     #     user_markup.row(item)
 
@@ -69,7 +70,7 @@ def generator_menu(message, menu_list):
 @bot.message_handler(commands=['start'])
 def handle_start(message):
     generator_menu(message, main_menu_list)
-    answer_text(message, text_welcome)
+    # answer_text(message, text_welcome)
 
 @bot.message_handler(regexp='Получить воду')
 def handle_start(message):
