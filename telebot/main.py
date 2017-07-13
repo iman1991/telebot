@@ -50,34 +50,71 @@ def score(uid):
     res = results["score"]
     return res
     
+text_welcome = "Добро пожаловать!"
+text_error = "Команда не найдена ("
+back_menu_list = ["Назад"]
+main_menu_list = ["Получить воду", "Пополнить баланс", "Баланс"]
 
+def answer_text(message, answer):
+    bot.send_message(message.from_user.id, answer)
 
-@bot.message_handler(content_types=['text'])
-def prot(message):
-    # infuser['param']['idT'] = message.from_user.id
-    uid = message.from_user.id
-    uname = message.chat.first_name
-    if message.text == 'Назад':
-        # add_user(uid, uname)
-        back(message)
-    elif message.text == 'Получить воду':
-        global infuser
-        infuser['method'] = 'GetWater'
-        # add_user(uid, uname)
-        get_water(message)
-    elif message.text == 'Пополнить баланс':
-        # add_user(uid, uname)
-        add_score(message)
-    elif message.text == 'Баланс':
-        # add_user(uid, uname)
-        get_score(message)
-    elif message.text == '/start':
-        # add_user(uid, uname)
-        handle_start(message)
-    else:
-        user_markup = telebot.types.ReplyKeyboardMarkup()
-        user_markup.row('Назад')
-        bot.send_message(message.from_user.id, 'Команда не найдена', reply_markup=user_markup)
+def generator_menu(message, menu_list):
+    user_markup = telebot.types.ReplyKeyboardMarkup()
+    for item in menu_list:
+        user_markup.row(item)
+
+@bot.message_handler(commands=['start'])
+def handle_start(message):
+    answer_text(message, text_welcome)
+    generator_menu(message, back_menu_list)
+
+@bot.message_handler(regexp='Получить воду')
+def handle_start(message):
+    generator_menu(message, back_menu_list)
+    global infuser
+    infuser['method'] = 'GetWater'
+    get_water(message)
+
+@bot.message_handler(regexp='Пополнить баланс')
+def handle_start(message):
+    generator_menu(message, back_menu_list)
+    add_score(message)
+
+@bot.message_handler(regexp='Баланс')
+def handle_start(message):
+    generator_menu(message, back_menu_list)
+    get_score(message)
+
+@bot.message_handler(regexp='Назад')
+def handle_start(message):
+    generator_menu(message, main_menu_list)
+
+# @bot.message_handler(content_types=['text'])
+# def prot(message):
+#     # infuser['param']['idT'] = message.from_user.id
+#     uid = message.from_user.id
+#     uname = message.chat.first_name
+#     if message.text == 'Назад':
+#         # add_user(uid, uname)
+#         back(message)
+#     # elif message.text == 'Получить воду':
+#     #     global infuser
+#     #     infuser['method'] = 'GetWater'
+#     #     # add_user(uid, uname)
+#     #     get_water(message)
+#     elif message.text == 'Пополнить баланс':
+#         # add_user(uid, uname)
+#         add_score(message)
+#     elif message.text == 'Баланс':
+#         # add_user(uid, uname)
+#         get_score(message)
+#     elif message.text == '/start':
+#         # add_user(uid, uname)
+#         handle_start(message)
+#     else:
+#         user_markup = telebot.types.ReplyKeyboardMarkup()
+#         user_markup.row('Назад')
+#         bot.send_message(message.from_user.id, 'Команда не найдена', reply_markup=user_markup)
 
 
 @bot.message_handler(commands=['start'])
