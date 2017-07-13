@@ -76,32 +76,33 @@ def generator_menu(message, menu_list):
         user_markup.row(menu_list[item])
 
 @bot.message_handler(commands=['start'])
-answer_text(message, text_welcome)
-generator_menu(message, back_menu_list)
+def handle_start(message):
+    answer_text(message, text_welcome)
+    generator_menu(message, back_menu_list)
 
 @bot.message_handler(regexp='Получить воду')
-generator_menu(message, back_menu_list)
-global infuser
-infuser['method'] = 'GetWater'
-# add_user(uid, uname)
-get_water(message)
+def handle_start(message):
+    generator_menu(message, back_menu_list)
+    global infuser
+    infuser['method'] = 'GetWater'
+    # add_user(uid, uname)
+    get_water(message)
 
 @bot.message_handler(regexp='Пополнить баланс')
-generator_menu(message, back_menu_list)
+def handle_start(message):
+    generator_menu(message, back_menu_list)
 
 @bot.message_handler(regexp='Баланс')
-generator_menu(message, back_menu_list)
+def handle_start(message):
+    generator_menu(message, back_menu_list)
 
 @bot.message_handler(regexp='Назад')
-generator_menu(message, main_menu_list)
+def handle_start(message):
+    generator_menu(message, main_menu_list)
 
 @bot.message_handler(content_types=['text'])
-answer_text(message, text_error)
-
-
-
-
-
+def handle_start(message):
+    answer_text(message, text_error)
 
 
 def get_water(message):
