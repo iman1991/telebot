@@ -6,10 +6,10 @@ import socket
 import json
 import pymysql.cursors
 
-infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
-sock = socket.socket()
+# infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
+# sock = socket.socket()
 
-sock.connect(('127.0.0.1', 8080))
+# sock.connect(('127.0.0.1', 8080))
 
 
 def connect():
@@ -168,15 +168,14 @@ def check(message):
     res = score(uid)
     user_markup = telebot.types.ReplyKeyboardMarkup()
     if message.text.isdigit():
-        global infuser
-        infuser['param']['idv'] = int(message.text)
-        infuser['param']['idT'] = message.from_user.id
-        infuser['param']['score'] = res
+        # global infuser
+        # infuser['param']['idv'] = int(message.text)
+        # infuser['param']['idT'] = message.from_user.id
+        # infuser['param']['score'] = res
         bot.send_message(message.from_user.id, '1 литр 4₽\nПоднесите тару к водомату и нажмите кноку "Старт" на аппарате.', reply_markup=user_markup)
-        j = json.dumps(infuser)
-        sock.send(j.encode("utf-8"))
-        data = sock.recv(2048)
-        print(data)
+        # j = json.dumps(infuser)
+        # sock.send(j.encode("utf-8"))
+        # data = sock.recv(2048)
     elif not (message.text.isdigit()) and not "Назад":
         bot.send_message(message.from_user.id, 'Ошибка ввода', reply_markup=user_markup)
         bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
