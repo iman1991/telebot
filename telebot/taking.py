@@ -5,6 +5,8 @@ import inDB
 
 bot = telebot.TeleBot(settings.token)
 
+text_id = settings.text_id
+
 back_menu_list = settings.back_menu_list
 
 main_menu_list = settings.main_menu_list
