@@ -117,24 +117,24 @@ def handle_start(message):
 #         bot.send_message(message.from_user.id, 'Команда не найдена', reply_markup=user_markup)
 
 
-@bot.message_handler(commands=['start'])
-def handle_start(message):
-    user_markup = telebot.types.ReplyKeyboardMarkup()
-    print(user_markup.row('Получить воду'))
-    user_markup.row('Получить воду')
-    user_markup.row('Пополнить баланс')
-    # user_markup.row('Статистика')
-    user_markup.row('Баланс')
-    bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
+# @bot.message_handler(commands=['start'])
+# def handle_start(message):
+#     user_markup = telebot.types.ReplyKeyboardMarkup()
+#     print(user_markup.row('Получить воду'))
+#     user_markup.row('Получить воду')
+#     user_markup.row('Пополнить баланс')
+#     # user_markup.row('Статистика')
+#     user_markup.row('Баланс')
+#     bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
 
 
-def back(message):
-    user_markup = telebot.types.ReplyKeyboardMarkup()
-    user_markup.row('Получить воду')
-    user_markup.row('Пополнить баланс')
-    # user_markup.row('Статистика')
-    user_markup.row('Баланс')
-    bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
+# def back(message):
+#     user_markup = telebot.types.ReplyKeyboardMarkup()
+#     user_markup.row('Получить воду')
+#     user_markup.row('Пополнить баланс')
+#     # user_markup.row('Статистика')
+#     user_markup.row('Баланс')
+#     bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
 
 
 def get_water(message):
