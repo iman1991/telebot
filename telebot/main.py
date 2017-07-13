@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import telebot
 import settings
+import connection
 import socket
 import json
 import pymysql.cursors
