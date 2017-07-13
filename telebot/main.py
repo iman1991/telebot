@@ -113,12 +113,10 @@ def handle_start(message):
 
 
 def get_water(message):
-    sent = bot.send_message(message.from_user.id, 'Введите ID водомата')
     bot.register_next_step_handler(sent, check)
 
 
 def add_score(message):
-    sent = bot.send_message(message.from_user.id, 'Введите ID водомата')
     bot.register_next_step_handler(sent, check)
 
 
