@@ -30,7 +30,7 @@ def check(message):
         # j = json.dumps(infuser)
         # sock.send(j.encode("utf-8"))
         # data = sock.recv(2048)
-    elif message.text = "Назад":
+    elif message.text == "Назад":
         break
     else:
         @bot.message_handler(content_types=['text'])
