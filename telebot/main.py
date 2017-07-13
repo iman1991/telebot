@@ -55,41 +55,39 @@ text_error = "Команда не найдена ("
 back_menu_list = ["Назад"]
 main_menu_list = ["Получить воду", "Пополнить баланс", "Баланс"]
 
-def answer_text(message, answer):
+def answer_text(message, answer, user_markup):
     bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
 
-def generator_menu(message, menu_list, answer):
+def generator_menu(message, menu_list):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     for item in menu_list:
         user_markup.row(item)
-    bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
-
+    return user_markup
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
-    generator_menu(message, main_menu_list, text_welcome)
-    # answer_text(message, text_welcome)
+    answer_text(message, text_welcome, generator_menu(message, main_menu_list))
 
 @bot.message_handler(regexp='Получить воду')
 def handle_start(message):
-    # generator_menu(message, back_menu_list)
+    generator_menu(message, back_menu_list)
     global infuser
     infuser['method'] = 'GetWater'
     get_water(message)
 
 @bot.message_handler(regexp='Пополнить баланс')
 def handle_start(message):
-    # generator_menu(message, back_menu_list)
+    generator_menu(message, back_menu_list)
     add_score(message)
 
 @bot.message_handler(regexp='Баланс')
 def handle_start(message):
-    # generator_menu(message, back_menu_list)
+    generator_menu(message, back_menu_list)
     get_score(message)
 
-# @bot.message_handler(regexp='Назад')
-# def handle_start(message):
-    # generator_menu(message, main_menu_list)
+@bot.message_handler(regexp='Назад')
+def handle_start(message):
+    generator_menu(message, main_menu_list)
 
 # @bot.message_handler(content_types=['text'])
 # def prot(message):
