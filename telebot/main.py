@@ -87,8 +87,8 @@ def handle_start(message):
     # generator_menu(message, back_menu_list)
     get_score(message)
 
-@bot.message_handler(regexp='Назад')
-def handle_start(message):
+# @bot.message_handler(regexp='Назад')
+# def handle_start(message):
     # generator_menu(message, main_menu_list)
 
 # @bot.message_handler(content_types=['text'])
