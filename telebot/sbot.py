@@ -87,11 +87,7 @@ def handle_start(message):
     infuser['method'] = 'GetWater'
     # add_user(uid, uname)
     get_water(message)
-
-@bot.message_handler(regexp='Пополнить баланс')
-def handle_start(message):
-    generator_menu(message, back_menu_list)
-
+    
     def get_water(message):
         user_markup = telebot.types.ReplyKeyboardMarkup()
         user_markup.row('Назад')
@@ -116,6 +112,10 @@ def handle_start(message):
         elif not (message.text.isdigit()) and not "Назад":
             bot.send_message(message.from_user.id, 'Ошибка ввода', reply_markup=user_markup)
             bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
+
+@bot.message_handler(regexp='Пополнить баланс')
+def handle_start(message):
+    generator_menu(message, back_menu_list)
 
 
 @bot.message_handler(regexp='Баланс')
