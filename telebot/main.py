@@ -67,6 +67,8 @@ def generator_menu(message, menu_list):
 def handle_start(message):
     generator_menu(message, main_menu_list)
     answer_text(message, text_welcome)
+    user_markup = telebot.types.ReplyKeyboardMarkup()
+    user_markup.row('Статистика')
 
 @bot.message_handler(regexp='Получить воду')
 def handle_start(message):
