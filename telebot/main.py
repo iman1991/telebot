@@ -92,7 +92,7 @@ def get_score(message):
 def check(message):
     uid = message.from_user.id
     uname = message.chat.first_name
-    res = score(uid)
+    res = inDB.score(uid)
     user_markup = telebot.types.ReplyKeyboardMarkup()
     if message.text.isdigit():
         # global infuser
