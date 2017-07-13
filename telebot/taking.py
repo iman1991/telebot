@@ -16,7 +16,6 @@ def get_score(message):
     res = inDB.score(uid)
     return res
 
-
 def check(message):
     uid = message.from_user.id
     res = inDB.score(uid)
