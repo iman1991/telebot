@@ -5,6 +5,9 @@ import inDB
 
 bot = telebot.TeleBot(settings.token)
 
+back_menu_list = settings.back_menu_list
+
+main_menu_list = settings.main_menu_list
 
 def get_score(message):
     uid = message.from_user.id
