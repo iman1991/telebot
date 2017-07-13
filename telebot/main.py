@@ -2,27 +2,10 @@
 # -*- coding: utf-8 -*-
 import telebot
 import settings
-import connection
 import inDB
+import handlers
 import socket
 import json
-
-
-
-
-def add_user(uid, uname):
-    cursor = connection.cursor()
-    cursor.execute("SELECT idT FROM users WHERE idT = %i" % (uid))
-    results = cursor.fetchone()
-    cursor.close()
-    connection.close()
-    if results is None or str(results['idT']) != str(uid):
-        cursor = connection.cursor()
-        cursor.execute("INSERT INTO users (idT, name, score) values ( %i, '%s', %i)" % (uid, uname, 0))
-        connection.commit()   
-        cursor.close()
-        connection.close()
-        return True
 
 
 bot = telebot.TeleBot(settings.token)
@@ -41,42 +24,29 @@ main_menu_list = settings.main_menu_list
 
 
 
-def answer_text(message, answer, user_markup):
-    return bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
-
-def generator_menu(message, menu_list):
-    user_markup = telebot.types.ReplyKeyboardMarkup()
-    for item in menu_list:
-        user_markup.row(item)
-    return user_markup
-
-
-
-
-
 @bot.message_handler(commands=['start'])
 def handle_start(message):
-    answer_text(message, text_welcome, generator_menu(message, main_menu_list))
+    handlers.answer_text(message, text_welcome, handlers.generator_menu(message, main_menu_list))
 
 @bot.message_handler(regexp='Получить воду')
 def handle_start(message):
-    sent = answer_text(message, text_id, generator_menu(message, back_menu_list))
+    sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
     # global infuser
     # infuser['method'] = 'GetWater'
     bot.register_next_step_handler(sent, check)
 
 @bot.message_handler(regexp='Пополнить баланс')
 def handle_start(message):
-    sent = answer_text(message, text_id, generator_menu(message, back_menu_list))
+    sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
     bot.register_next_step_handler(sent, check)
 
 @bot.message_handler(regexp='Баланс')
 def handle_start(message):
-    answer_text(message, "{}₽".format(get_score(message)), generator_menu(message, back_menu_list))
+    answer_text(message, "{}₽".format(get_score(message)), handlers.generator_menu(message, back_menu_list))
 
 @bot.message_handler(regexp='Назад')
 def handle_start(message):
-    answer_text(message, text_get, generator_menu(message, main_menu_list))
+    handlers.answer_text(message, text_get, handlers.generator_menu(message, main_menu_list))
 
 
 
