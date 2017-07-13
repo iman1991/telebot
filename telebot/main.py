@@ -12,43 +12,43 @@ sock = socket.socket()
 sock.connect(('127.0.0.1', 9090))
 
 
-# def connect():
-#     connection = pymysql.connect(host='127.0.0.1',
-#                                  user='root',
-#                                  password='7087',
-#                                  db='vodomat',
-#                                  charset='utf8mb4',
-#                                  cursorclass=pymysql.cursors.DictCursor)
-#     return connection
+def connect():
+    connection = pymysql.connect(host='127.0.0.1',
+                                 user='root',
+                                 password='7087',
+                                 db='vodomat',
+                                 charset='utf8mb4',
+                                 cursorclass=pymysql.cursors.DictCursor)
+    return connection
 
 
 bot = telebot.TeleBot(config.token)
 
-# def add_user(uid, uname):
-#     connection = connect()
-#     cursor = connection.cursor()
-#     cursor.execute("SELECT idT FROM users WHERE idT = %i" % (uid))
-#     results = cursor.fetchone()
-#     cursor.close()
-#     connection.close()
-#     if results is None or str(results['idT']) != str(uid):
-#         connection = connect()
-#         cursor = connection.cursor()
-#         cursor.execute("INSERT INTO users (idT, name, score) values ( %i, '%s', %i)" % (uid, uname, 0))
-#         connection.commit()   
-#         cursor.close()
-#         connection.close()
-#         return True
+def add_user(uid, uname):
+    connection = connect()
+    cursor = connection.cursor()
+    cursor.execute("SELECT idT FROM users WHERE idT = %i" % (uid))
+    results = cursor.fetchone()
+    cursor.close()
+    connection.close()
+    if results is None or str(results['idT']) != str(uid):
+        connection = connect()
+        cursor = connection.cursor()
+        cursor.execute("INSERT INTO users (idT, name, score) values ( %i, '%s', %i)" % (uid, uname, 0))
+        connection.commit()   
+        cursor.close()
+        connection.close()
+        return True
 
-# def score(uid):
-#     connection = connect()
-#     cursor = connection.cursor()
-#     cursor.execute("SELECT score FROM users WHERE idT = %i" % (uid))
-#     results = cursor.fetchone()
-#     cursor.close()
-#     connection.close()
-#     res = "{}₽".format(str(results["score"]))
-#     return res
+def score(uid):
+    connection = connect()
+    cursor = connection.cursor()
+    cursor.execute("SELECT score FROM users WHERE idT = %i" % (uid))
+    results = cursor.fetchone()
+    cursor.close()
+    connection.close()
+    res = "{}₽".format(str(results["score"]))
+    return res
     
 
 
@@ -116,11 +116,10 @@ def add_score(message):
 def get_score(message):
     uid = message.from_user.id
     uname = message.chat.first_name
-    # res = score(uid)
-    # Ubalnc = res
+    res = score(uid)
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
-    bot.send_message(message.from_user.id, 'res', reply_markup=user_markup)
+    bot.send_message(message.from_user.id, res, reply_markup=user_markup)
 
 
 
