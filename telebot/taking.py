@@ -36,3 +36,4 @@ def check(message):
         handlers.answer_text(message, command_error, handlers.generator_menu(message, back_menu_list))
         sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
         bot.register_next_step_handler(sent, check)
+        check()
