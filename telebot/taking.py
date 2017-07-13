@@ -1,4 +1,5 @@
 import telebot
+import handlers
 import settings
 import inDB
 
@@ -25,5 +26,7 @@ def check(message):
         # sock.send(j.encode("utf-8"))
         # data = sock.recv(2048)
     elif not (message.text.isdigit()) and message.text != "Назад":
-        bot.send_message(message.from_user.id, 'Ошибка ввода', reply_markup=user_markup)
-        bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
+        # bot.send_message(message.from_user.id, 'Ошибка ввода', reply_markup=user_markup)
+        # bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
+        sent = handlers.answer_text(message, 'Ошибка ввода', handlers.generator_menu(message, back_menu_list))
+        bot.register_next_step_handler(sent, check)
