@@ -86,15 +86,27 @@ def handle_start(message):
     global infuser
     infuser['method'] = 'GetWater'
     # add_user(uid, uname)
-    get_water(message)
-    
-    def get_water(message):
-        user_markup = telebot.types.ReplyKeyboardMarkup()
-        user_markup.row('Назад')
-        sent = bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
-        bot.register_next_step_handler(sent, check)
+    user_markup = telebot.types.ReplyKeyboardMarkup()
+    user_markup.row('Назад')
+    sent = bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
+    bot.register_next_step_handler(sent, check)
 
-    def check(message):
+
+@bot.message_handler(regexp='Пополнить баланс')
+def handle_start(message):
+    generator_menu(message, back_menu_list)
+
+
+@bot.message_handler(regexp='Баланс')
+def handle_start(message):
+    generator_menu(message, back_menu_list)
+
+@bot.message_handler(regexp='Назад')
+def handle_start(message):
+    generator_menu(message, main_menu_list)
+
+
+def check(message):
         uid = message.from_user.id
         uname = message.chat.first_name
         res = score(uid)
@@ -112,22 +124,6 @@ def handle_start(message):
         elif not (message.text.isdigit()) and not "Назад":
             bot.send_message(message.from_user.id, 'Ошибка ввода', reply_markup=user_markup)
             bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
-
-@bot.message_handler(regexp='Пополнить баланс')
-def handle_start(message):
-    generator_menu(message, back_menu_list)
-
-
-@bot.message_handler(regexp='Баланс')
-def handle_start(message):
-    generator_menu(message, back_menu_list)
-
-@bot.message_handler(regexp='Назад')
-def handle_start(message):
-    generator_menu(message, main_menu_list)
-
-
-
 
 
 
