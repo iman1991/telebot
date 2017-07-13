@@ -53,13 +53,15 @@ def score(uid):
 text_welcome = "Добро пожаловать!"
 text_error = "Команда не найдена ("
 back_menu_list = ["Назад"]
-main_menu_list = ["Получить воду"]
+main_menu_list = ["Получить воду", "Пополнить баланс", "Баланс"]
 
 def answer_text(message, answer):
     bot.send_message(message.from_user.id, answer)
 
 def generator_menu(message, menu_list):
     user_markup = telebot.types.ReplyKeyboardMarkup()
+    user_markup.row('Получить воду')
+    user_markup.row('Пополнить баланс')
     for item in menu_list:
         user_markup.row(item)
 
