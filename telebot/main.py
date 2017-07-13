@@ -56,14 +56,14 @@ back_menu_list = ["Назад"]
 main_menu_list = ["Получить воду", "Пополнить баланс", "Баланс"]
 
 def answer_text(message, answer):
-    bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
+    bot.send_message(message.from_user.id, answer)
 
 def generator_menu(message, menu_list):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Получить воду')
     user_markup.row('Пополнить баланс')
-    for item in menu_list:
-        user_markup.row(item)
+    # for item in menu_list:
+    #     user_markup.row(item)
 
 
 @bot.message_handler(commands=['start'])
