@@ -25,17 +25,6 @@ def add_user(uid, uname):
         connection.close()
         return True
 
-score(uid) = inDB.score(uid)
-
-# def score(uid):
-#     cursor = connection.cursor()
-#     cursor.execute("SELECT score FROM users WHERE idT = %i" % (uid))
-#     results = cursor.fetchone()
-#     cursor.close()
-#     connection.close()
-#     res = results["score"]
-#     return res
-    
 
 bot = telebot.TeleBot(settings.token)
 
@@ -95,7 +84,7 @@ def handle_start(message):
 
 def get_score(message):
     uid = message.from_user.id
-    res = score(uid)
+    res = inDB.score(uid)
     return res
 
 
