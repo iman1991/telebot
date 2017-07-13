@@ -21,6 +21,7 @@ def get_score(message):
     return res
 
 def check(message):
+    one = message.text
     if message.text.isdigit():
         # global infuser
         # infuser['param']['idv'] = int(message.text)
@@ -35,9 +36,5 @@ def check(message):
     else:
         handlers.answer_text(message, command_error, handlers.generator_menu(message, back_menu_list))
         sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
-        bot.register_next_step_handler(sent, check_error)
-
-
-def check_error(message):
-    sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
-    check(message)
+        if one != message.text:
+            check(message)
