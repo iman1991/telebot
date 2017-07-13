@@ -66,7 +66,7 @@ def generator_menu(message, menu_list):
 @bot.message_handler(commands=['start'])
 def handle_start(message):
     answer_text(message, text_welcome)
-    generator_menu(message, back_menu_list)
+    generator_menu(message, main_menu_list)
 
 @bot.message_handler(regexp='Получить воду')
 def handle_start(message):
