@@ -35,10 +35,9 @@ def check(message):
     else:
         handlers.answer_text(message, command_error, handlers.generator_menu(message, back_menu_list))
         sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
-        # bot.register_next_step_handler(sent, check_error)
+        bot.register_next_step_handler(sent, check_error)
 
 
-@bot.message_handler(content_types=['text'])
 def check_error(message):
     sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
     check(message)
