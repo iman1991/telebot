@@ -71,8 +71,8 @@ def handle_start(message):
 @bot.message_handler(regexp='Получить воду')
 def handle_start(message):
     answer_text(message, text_welcome, generator_menu(message, back_menu_list))
-    global infuser
-    infuser['method'] = 'GetWater'
+    # global infuser
+    # infuser['method'] = 'GetWater'
     get_water(message)
 
 @bot.message_handler(regexp='Пополнить баланс')
