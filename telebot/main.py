@@ -51,6 +51,7 @@ def score(uid):
     return res
     
 text_welcome = "Добро пожаловать!"
+text_id = "Введите ID водомата"
 text_error = "Команда не найдена ("
 back_menu_list = ["Назад"]
 main_menu_list = ["Получить воду", "Пополнить баланс", "Баланс"]
@@ -70,19 +71,19 @@ def handle_start(message):
 
 @bot.message_handler(regexp='Получить воду')
 def handle_start(message):
-    answer_text(message, text_welcome, generator_menu(message, back_menu_list))
+    answer_text(message, text_id, generator_menu(message, back_menu_list))
     # global infuser
     # infuser['method'] = 'GetWater'
     get_water(message)
 
 @bot.message_handler(regexp='Пополнить баланс')
 def handle_start(message):
-    answer_text(message, text_welcome, generator_menu(message, back_menu_list))
+    answer_text(message, text_id, generator_menu(message, back_menu_list))
     add_score(message)
 
 @bot.message_handler(regexp='Баланс')
 def handle_start(message):
-    answer_text(message, text_welcome, generator_menu(message, back_menu_list))
+    answer_text(message, get_score(message), generator_menu(message, back_menu_list))
     get_score(message)
 
 @bot.message_handler(regexp='Назад')
@@ -159,6 +160,7 @@ def get_score(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
     bot.send_message(message.from_user.id, res, reply_markup=user_markup)
+    return res
 
 
 

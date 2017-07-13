@@ -6,10 +6,10 @@ import socket
 import json
 import pymysql.cursors
 
-infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
-sock = socket.socket()
+# infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
+# sock = socket.socket()
 
-sock.connect(('127.0.0.1', 8080))
+# sock.connect(('127.0.0.1', 8080))
 
 def connect():
     connection = pymysql.connect(host='127.0.0.1',
@@ -62,8 +62,8 @@ def prot(message):
         # add_user(uid, uname)
         back(message)
     elif message.text == 'Получить воду':
-        global infuser
-        infuser['method'] = 'GetWater'
+        # global infuser
+        # infuser['method'] = 'GetWater'
         # add_user(uid, uname)
         get_water(message)
     elif message.text == 'Пополнить баланс':
@@ -98,7 +98,6 @@ def back(message):
     user_markup.row('Пополнить баланс')
     # user_markup.row('Статистика')
     user_markup.row('Баланс')
-    bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
 
 
 def get_water(message):
@@ -137,10 +136,10 @@ def check(message):
         infuser['param']['idT'] = message.from_user.id
         infuser['param']['score'] = int(res)
         bot.send_message(message.from_user.id, '1 литр 4₽\nПоднесите тару к водомату и нажмите кноку "Старт" на аппарате.', reply_markup=user_markup)
-        j = json.dumps(infuser)
-        sock.send(j.encode("utf-8"))
-        data = sock.recv(2048)
-        print(data)
+        # j = json.dumps(infuser)
+        # sock.send(j.encode("utf-8"))
+        # data = sock.recv(2048)
+        # print(data)
     elif not (message.text.isdigit()) and not "Назад":
         bot.send_message(message.from_user.id, 'Ошибка ввода', reply_markup=user_markup)
         bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
