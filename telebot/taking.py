@@ -20,7 +20,6 @@ def get_score(message):
 def check(message):
     uid = message.from_user.id
     res = inDB.score(uid)
-    handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
     user_markup = telebot.types.ReplyKeyboardMarkup()
     if message.text.isdigit():
         # global infuser
@@ -33,4 +32,5 @@ def check(message):
         # data = sock.recv(2048)
     elif not (message.text.isdigit()) and message.text != "Назад":
         sent = handlers.answer_text(message, 'Ошибка ввода', handlers.generator_menu(message, back_menu_list))
+        sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
         bot.register_next_step_handler(sent, check)
