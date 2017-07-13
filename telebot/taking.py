@@ -33,8 +33,10 @@ def check(message):
     elif message.text == "Назад":
         pass
     else:
-        @bot.message_handler(content_types=['text'])
-        def handle_start(message):
-            handlers.answer_text(message, command_error, handlers.generator_menu(message, back_menu_list))
-            sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
-            bot.register_next_step_handler(sent, check)
+        handlers.answer_text(message, command_error, handlers.generator_menu(message, back_menu_list))
+        sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
+        bot.register_next_step_handler(sent, check_error)
+
+def check_error(message):
+    sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
+    bot.register_next_step_handler(sent, check)
