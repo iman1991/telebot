@@ -31,7 +31,7 @@ def check(message):
         # sock.send(j.encode("utf-8"))
         # data = sock.recv(2048)
     elif message.text == "Назад":
-        break
+        pass
     else:
         @bot.message_handler(content_types=['text'])
         def handle_start(message):
