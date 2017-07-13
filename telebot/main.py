@@ -63,12 +63,22 @@ def generator_menu(message, menu_list):
     for item in menu_list:
         user_markup.row(item)
 
+# @bot.message_handler(commands=['start'])
+# def handle_start(message):
+#     user_markup = telebot.types.ReplyKeyboardMarkup()
+#     user_markup.row('Статистика')
+#     generator_menu(message, main_menu_list)
+#     answer_text(message, text_welcome)
+
 @bot.message_handler(commands=['start'])
 def handle_start(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
-    user_markup.row('Статистика')
-    generator_menu(message, main_menu_list)
-    answer_text(message, text_welcome)
+    print(user_markup.row('Получить воду'))
+    user_markup.row('Получить воду')
+    user_markup.row('Пополнить баланс')
+    # user_markup.row('Статистика')
+    user_markup.row('Баланс')
+    bot.send_message(message.from_user.id, 'Добро пожаловать', reply_markup=user_markup)
 
 @bot.message_handler(regexp='Получить воду')
 def handle_start(message):
