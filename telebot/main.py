@@ -71,7 +71,7 @@ main_menu_list = [
 
 
 def answer_text(message, answer, user_markup):
-    bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
+    return bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
 
 def generator_menu(message, menu_list):
     user_markup = telebot.types.ReplyKeyboardMarkup()
@@ -89,15 +89,15 @@ def handle_start(message):
 
 @bot.message_handler(regexp='Получить воду')
 def handle_start(message):
-    answer_text(message, text_id, generator_menu(message, back_menu_list))
+    sent = answer_text(message, text_id, generator_menu(message, back_menu_list))
     # global infuser
     # infuser['method'] = 'GetWater'
-    get_water(message)
+    bot.register_next_step_handler(sent, check)
 
 @bot.message_handler(regexp='Пополнить баланс')
 def handle_start(message):
-    answer_text(message, text_id, generator_menu(message, back_menu_list))
-    add_score(message)
+    sent = answer_text(message, text_id, generator_menu(message, back_menu_list))
+    bot.register_next_step_handler(sent, check)
 
 @bot.message_handler(regexp='Баланс')
 def handle_start(message):
@@ -109,21 +109,6 @@ def handle_start(message):
     answer_text(message, text_get, generator_menu(message, main_menu_list))
 
 
-
-
-
-def get_water(message):
-    user_markup = telebot.types.ReplyKeyboardMarkup()
-    sent = bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
-    print(sent)
-    bot.register_next_step_handler(sent, check)
-
-
-def add_score(message):
-    user_markup = telebot.types.ReplyKeyboardMarkup()
-    sent = bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
-    print(sent)
-    bot.register_next_step_handler(sent, check)
 
 
 def get_score(message):
