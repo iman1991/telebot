@@ -102,7 +102,6 @@ def handle_start(message):
 @bot.message_handler(regexp='Баланс')
 def handle_start(message):
     answer_text(message, get_score(message), generator_menu(message, back_menu_list))
-    get_score(message)
 
 @bot.message_handler(regexp='Назад')
 def handle_start(message):
@@ -116,9 +115,6 @@ def get_score(message):
     uname = message.chat.first_name
     res = score(uid)
     res = "{}₽".format(res)
-    user_markup = telebot.types.ReplyKeyboardMarkup()
-    user_markup.row('Назад')
-    bot.send_message(message.from_user.id, res, reply_markup=user_markup)
     return res
 
 
