@@ -133,3 +133,10 @@ def check(message):
         bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
 
 
+
+bot.polling(none_stop=True, interval = 0)
+
+
+
+
+
