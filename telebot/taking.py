@@ -1,3 +1,7 @@
+import telebot
+import settings
+
+bot = telebot.TeleBot(settings.token)
 
 def get_water(message):
     user_markup = telebot.types.ReplyKeyboardMarkup()
