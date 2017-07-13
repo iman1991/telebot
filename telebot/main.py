@@ -52,21 +52,17 @@ def score(uid):
     return res
     
 
-text_welcome = "Добро пожаловать!"
+text_welcome = settings.text_welcome
 
-text_get = "Выберите один из пунктов меню:"
+text_get = settings.text_get
 
-text_id = "Введите ID водомата"
+text_id = settings.text_id
 
-text_error = "Команда не найдена ("
+text_error = settings.text_error
 
-back_menu_list = ["Назад"]
+back_menu_list = settings.back_menu_list
 
-main_menu_list = [
-    "Получить воду", 
-    "Пополнить баланс", 
-    "Баланс"
-]
+main_menu_list = settings.main_menu_list
 
 
 
@@ -112,7 +108,6 @@ def handle_start(message):
 
 def get_score(message):
     uid = message.from_user.id
-    uname = message.chat.first_name
     res = score(uid)
     return res
 
