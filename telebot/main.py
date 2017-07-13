@@ -113,12 +113,14 @@ def handle_start(message):
 
 
 def get_water(message):
+    user_markup = telebot.types.ReplyKeyboardMarkup()
     sent = bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
     print(sent)
     bot.register_next_step_handler(sent, check)
 
 
 def add_score(message):
+    user_markup = telebot.types.ReplyKeyboardMarkup()
     sent = bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
     print(sent)
     bot.register_next_step_handler(sent, check)
