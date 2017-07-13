@@ -73,7 +73,7 @@ def answer_text(message, answer):
 def generator_menu(message, menu_list):
     user_markup = telebot.types.ReplyKeyboardMarkup()
     for item in menu_list:
-        user_markup.row(menu_list[item])
+        user_markup.row(item)
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
