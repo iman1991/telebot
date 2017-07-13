@@ -53,7 +53,7 @@ def score(uid):
 text_welcome = "Добро пожаловать!"
 text_error = "Команда не найдена ("
 back_menu_list = ["Назад"]
-main_menu_list = ["Получить воду", "Пополнить баланс", "Баланс"]
+main_menu_list = ["Получить воду"]
 
 def answer_text(message, answer):
     bot.send_message(message.from_user.id, answer, reply_markup=user_markup)
