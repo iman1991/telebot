@@ -5,7 +5,6 @@ import settings
 import connection
 import socket
 import json
-import pymysql.cursors
 
 # infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
 # sock = socket.socket()
