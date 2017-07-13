@@ -47,7 +47,7 @@ def score(uid):
     results = cursor.fetchone()
     cursor.close()
     connection.close()
-    res = "{}₽".format(str(results["score"]))
+    res = results["score"]
     return res
     
 
@@ -118,10 +118,10 @@ def get_score(message):
     uid = message.from_user.id
     uname = message.chat.first_name
     res = score(uid)
+    res = "{}₽".format()
     user_markup = telebot.types.ReplyKeyboardMarkup()
     user_markup.row('Назад')
     bot.send_message(message.from_user.id, res, reply_markup=user_markup)
-    return res
 
 
 
