@@ -9,6 +9,8 @@ text_id = settings.text_id
 
 text_water = settings.text_water
 
+command_error = settings.command_error
+
 back_menu_list = settings.back_menu_list
 
 main_menu_list = settings.main_menu_list
@@ -31,6 +33,6 @@ def check(message):
         # sock.send(j.encode("utf-8"))
         # data = sock.recv(2048)
     elif message.text != "Назад":
-        handlers.answer_text(message, 'Ошибка ввода', handlers.generator_menu(message, back_menu_list))
+        handlers.answer_text(message, command_error, handlers.generator_menu(message, back_menu_list))
         sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
         bot.register_next_step_handler(sent, check)
