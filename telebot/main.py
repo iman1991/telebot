@@ -42,7 +42,7 @@ def handle_start(message):
 
 @bot.message_handler(regexp='Баланс')
 def handle_start(message):
-    answer_text(message, "{}₽".format(get_score(message)), handlers.generator_menu(message, back_menu_list))
+    handlers.answer_text(message, "{}₽".format(get_score(message)), handlers.generator_menu(message, back_menu_list))
 
 @bot.message_handler(regexp='Назад')
 def handle_start(message):
