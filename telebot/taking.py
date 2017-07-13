@@ -36,5 +36,5 @@ def check(message):
     else:
         handlers.answer_text(message, command_error, handlers.generator_menu(message, back_menu_list))
         sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
-        if one != message.text:
+        if one == message.text:
             check(message)
