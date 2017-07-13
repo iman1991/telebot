@@ -66,6 +66,12 @@ def generator_menu(message, menu_list):
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
+    user_markup = telebot.types.ReplyKeyboardMarkup()
+    user_markup.row('Получить воду')
+    user_markup.row('Пополнить баланс')
+    # user_markup.row('Статистика')
+    user_markup.row('Баланс')
+    bot.send_message(message.from_user.id, 'Добро пожаловать')
     generator_menu(message, main_menu_list)
     answer_text(message, text_welcome)
 
