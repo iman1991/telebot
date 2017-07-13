@@ -30,7 +30,7 @@ def check(message):
         # j = json.dumps(infuser)
         # sock.send(j.encode("utf-8"))
         # data = sock.recv(2048)
-    elif not (message.text.isdigit()) and message.text != "Назад":
-        sent = handlers.answer_text(message, 'Ошибка ввода', handlers.generator_menu(message, back_menu_list))
+    elif message.text != "Назад":
+        handlers.answer_text(message, 'Ошибка ввода', handlers.generator_menu(message, back_menu_list))
         sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
         bot.register_next_step_handler(sent, check)
