@@ -1,3 +1,5 @@
+import pymysql.cursors
+
 def add_user(uid, uname):
     connection = connect()
     cursor = connection.cursor()

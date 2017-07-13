@@ -3,16 +3,12 @@
 import telebot
 import settings
 import connection
+import inDB
 import socket
 import json
 
-# infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
-# sock = socket.socket()
-
-# sock.connect(('127.0.0.1', 8080))
 
 connection = connection.connect()
-
 
 
 def add_user(uid, uname):
@@ -29,14 +25,16 @@ def add_user(uid, uname):
         connection.close()
         return True
 
-def score(uid):
-    cursor = connection.cursor()
-    cursor.execute("SELECT score FROM users WHERE idT = %i" % (uid))
-    results = cursor.fetchone()
-    cursor.close()
-    connection.close()
-    res = results["score"]
-    return res
+score(uid) = inDB.score(uid)
+
+# def score(uid):
+#     cursor = connection.cursor()
+#     cursor.execute("SELECT score FROM users WHERE idT = %i" % (uid))
+#     results = cursor.fetchone()
+#     cursor.close()
+#     connection.close()
+#     res = results["score"]
+#     return res
     
 
 bot = telebot.TeleBot(settings.token)
