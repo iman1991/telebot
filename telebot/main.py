@@ -9,7 +9,7 @@ import json
 import pymysql.cursors
 
 
-bot = telebot.TeleBot(config.token)
+bot = telebot.TeleBot(settings.token)
 
 
 @bot.message_handler(commands=['start'])
