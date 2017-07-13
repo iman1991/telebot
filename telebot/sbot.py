@@ -118,8 +118,6 @@ def handle_start(message):
             bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
 
 
-
-
 @bot.message_handler(regexp='Баланс')
 def handle_start(message):
     generator_menu(message, back_menu_list)
