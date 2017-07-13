@@ -24,6 +24,6 @@ def check(message):
         # j = json.dumps(infuser)
         # sock.send(j.encode("utf-8"))
         # data = sock.recv(2048)
-    elif not (message.text.isdigit()) and not "Назад":
+    elif not (message.text.isdigit()) and message.text != "Назад":
         bot.send_message(message.from_user.id, 'Ошибка ввода', reply_markup=user_markup)
         bot.send_message(message.from_user.id, 'Введите ID водомата', reply_markup=user_markup)
