@@ -1,7 +1,7 @@
 import pymysql.cursors
 import connection
 
-connection = connection.connect()
+
 
 def add_user(uid, uname):
     cursor = connection.cursor()
@@ -19,6 +19,7 @@ def add_user(uid, uname):
         return True
 
 def score(uid):
+    connection = connection.connect()
     cursor = connection.cursor()
     cursor.execute("SELECT score FROM users WHERE idT = %i" % (uid))
     results = cursor.fetchone()
