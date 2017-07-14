@@ -38,7 +38,7 @@ def check(message):
             gateway.infuser.update({'param':param})
             j = json.dumps(gateway.infuser)
             sock.send(j.encode("utf-8"))
-        sock.shutdown(socket.SHUT_RD)
+        sock.shutdown(socket.SHUT_WR)
         sock.close()
         handlers.answer_text(message, text_water, handlers.generator_menu(message, back_menu_list))
     elif message.text != "Назад":
