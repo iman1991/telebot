@@ -38,8 +38,9 @@ def check(message):
         if gateway.infuser["method"] is not None:
             j = json.dumps(gateway.infuser)
             sock.send(j.encode("utf-8"))
-        sock.close()
         sock.shutdown(socket.SHUT_RDWR)
+        sock.close()
+        infuser["method"] = ""
         handlers.answer_text(message, text_water, handlers.generator_menu(message, back_menu_list))
     elif message.text != "Назад":
         handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
