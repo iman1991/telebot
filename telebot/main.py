@@ -33,10 +33,10 @@ def handle_start(message):
 
 
 @bot.message_handler(regexp='Получить воду')
+global infuser
+    infuser['method'] = 'GetWater'
 def handle_start(message):
     sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
-    global infuser
-    infuser['method'] = 'GetWater'
     bot.register_next_step_handler(sent, taking.check)
 
 
