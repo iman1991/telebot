@@ -31,9 +31,9 @@ def check(message):
     sock.connect(('127.0.0.1', 8080))
     if message.text.isdigit():
         param = {
-                    'idv':int(message.text),
-                    'idT':message.from_user.id,
-                    'score':get_score(message)
+                    'idv': int(message.text),
+                    'idT': message.from_user.id,
+                    'score': get_score(message)
                 }
         gateway.infuser.update({'param':param})
         j = json.dumps(gateway.infuser)
