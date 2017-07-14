@@ -29,7 +29,6 @@ def check(message):
     if message.text.isdigit():
         sock = socket.socket()
         sock.connect(('127.0.0.1', 9090))
-        sock.listen(1)
         param = {
                     'idv': int(message.text),
                     'idT': message.from_user.id,
