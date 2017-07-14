@@ -1,8 +1,5 @@
 import pymysql.cursors
-# infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
-# sock = socket.socket()
 
-# sock.connect(('127.0.0.1', 8080))
 
 
 def connect():
