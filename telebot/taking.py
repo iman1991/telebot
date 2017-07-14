@@ -35,8 +35,9 @@ def check(message):
                     'score': get_score(message)
         }
         gateway.infuser.update({'param':param})
-        j = json.dumps(gateway.infuser)
-        sock.send(j.encode("utf-8"))
+        if gateway.infuser in not None:
+            j = json.dumps(gateway.infuser)
+            sock.send(j.encode("utf-8"))
         sock.close()
         sock.shutdown(socket.SHUT_RDWR)
         handlers.answer_text(message, text_water, handlers.generator_menu(message, back_menu_list))
