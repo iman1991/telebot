@@ -7,7 +7,7 @@ import handlers
 import taking
 import socket
 import json
-import geteway
+import gateway
 
 infuser = main.infuser
 
