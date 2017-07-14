@@ -35,7 +35,7 @@ def check(message):
                     'score': get_score(message)
         }
         gateway.infuser.update({'param':param})
-        if gateway.infuser is not None:
+        if gateway.infuser["method"] is not None:
             j = json.dumps(gateway.infuser)
             sock.send(j.encode("utf-8"))
         sock.close()
