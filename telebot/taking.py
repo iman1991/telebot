@@ -6,8 +6,9 @@ import settings
 import socket
 import inDB
 import json
+import main
 
-infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
+infuser = main.infuser
 
 sock = socket.socket()
 
