@@ -42,4 +42,3 @@ def check(message):
         data = sock.recv(2048)
     elif message.text != "Назад":
         handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
-        sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, main_menu_list))
