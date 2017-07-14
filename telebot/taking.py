@@ -40,9 +40,6 @@ def check(message):
         j = json.dumps(infuser)
         sock.send(j.encode("utf-8"))
         data = sock.recv(2048)
-    elif message.text == "Назад":
-        pass
-    else:
-        handlers.answer_text(message, command_error, handlers.generator_menu(message, back_menu_list))
-        sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
-        bot.register_next_step_handler(sent, check)
+    elif message.text != "Назад":
+        handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
+        sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, main_menu_list))
