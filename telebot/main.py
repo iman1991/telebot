@@ -8,7 +8,7 @@ import taking
 import socket
 import json
 
-infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
+# infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
 
 bot = telebot.TeleBot(settings.token)
 

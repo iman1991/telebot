@@ -4,7 +4,6 @@ import settings
 import inDB
 import json
 import socket
-import main
 
 # infuser = main.infuser
 
