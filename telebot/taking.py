@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
 import telebot
 import handlers
 import settings
@@ -7,6 +9,9 @@ import json
 
 infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
 
+sock = socket.socket()
+
+sock.connect(('127.0.0.1', 8080))
 
 bot = telebot.TeleBot(settings.token)
 
