@@ -38,6 +38,9 @@ def check(message):
             gateway.infuser.update({'param':param})
             j = json.dumps(gateway.infuser)
             sock.send(j.encode("utf-8"))
+            sock.send(j.encode("utf-8"))
+            sock.send(j.encode("utf-8"))
+            sock.send(j.encode("utf-8"))
         # sock.shutdown(socket.SHUT_RDWR)
         # sock.close()
         del sock
