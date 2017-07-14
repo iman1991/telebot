@@ -40,6 +40,7 @@ def check(message):
             sock.send(j.encode("utf-8"))
         sock.shutdown(socket.SHUT_RDWR)
         sock.close()
+        del j
         infuser["method"] = ""
         handlers.answer_text(message, text_water, handlers.generator_menu(message, back_menu_list))
     elif message.text != "Назад":
