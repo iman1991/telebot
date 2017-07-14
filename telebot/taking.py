@@ -6,7 +6,7 @@ import json
 import socket
 import main
 
-infuser = main.infuser
+# infuser = main.infuser
 
 # sock = socket.socket()
 
