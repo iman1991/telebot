@@ -7,10 +7,6 @@ import socket
 import gateway
 
 
-sock = socket.socket()
-
-sock.connect(('127.0.0.1', 8080))
-
 
 bot = telebot.TeleBot(settings.token)
 
@@ -30,6 +26,9 @@ def get_score(message):
     return res
 
 def check(message):
+    sock = socket.socket()
+
+    sock.connect(('127.0.0.1', 8080))
     if message.text.isdigit():
         param = {
                     'idv':int(message.text),
