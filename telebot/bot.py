@@ -55,7 +55,7 @@ def score(uid):
 
 @bot.message_handler(content_types=['text'])
 def prot(message):
-    # infuser['param']['idT'] = message.from_user.id
+    infuser['param']['idT'] = message.from_user.id
     uid = message.from_user.id
     uname = message.chat.first_name
     if message.text == 'Назад':

@@ -22,14 +22,14 @@ def get_score(message):
 
 def check(message):
     if message.text.isdigit():
-        # global infuser
-        # infuser['param']['idv'] = int(message.text)
-        # infuser['param']['idT'] = message.from_user.id
-        # infuser['param']['score'] = res
+        global infuser
+        infuser['param']['idv'] = int(message.text)
+        infuser['param']['idT'] = message.from_user.id
+        infuser['param']['score'] = res
         handlers.answer_text(message, text_water, handlers.generator_menu(message, back_menu_list))
-        # j = json.dumps(infuser)
-        # sock.send(j.encode("utf-8"))
-        # data = sock.recv(2048)
+        j = json.dumps(infuser)
+        sock.send(j.encode("utf-8"))
+        data = sock.recv(2048)
     elif message.text == "Назад":
         pass
     else:
