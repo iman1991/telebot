@@ -36,9 +36,9 @@ def check(message):
         infuser['param']['idv'] = int(message.text)
         infuser['param']['idT'] = message.from_user.id
         infuser['param']['score'] = get_score(message)
-        handlers.answer_text(message, text_water, handlers.generator_menu(message, back_menu_list))
         j = json.dumps(infuser)
         sock.send(j.encode("utf-8"))
         data = sock.recv(2048)
+        handlers.answer_text(message, text_water, handlers.generator_menu(message, back_menu_list))
     elif message.text != "Назад":
         handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
