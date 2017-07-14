@@ -1,7 +1,11 @@
 import telebot
 import handlers
 import settings
+import socket
 import inDB
+
+infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
+
 
 bot = telebot.TeleBot(settings.token)
 
