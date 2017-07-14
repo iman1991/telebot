@@ -36,7 +36,7 @@ def check(message):
                     'idT':message.from_user.id,
                     'score':get_score(message)
                 }
-        gatewey.infuser.update({'param':param})
+        gateway.infuser.update({'param':param})
         j = json.dumps(gateway.infuser)
         sock.send(j.encode("utf-8"))
         sock.shutdown(socket.RDWR)
