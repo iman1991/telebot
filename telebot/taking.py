@@ -29,13 +29,13 @@ def check(message):
     if message.text.isdigit():
         sock = socket.socket()
         sock.connect(('127.0.0.1', 8080))
-        param = {
-                    'idv': int(message.text),
-                    'idT': message.from_user.id,
-                    'score': get_score(message)
-        }
-        gateway.infuser.update({'param':param})
         if gateway.infuser["method"] is not None:
+            param = {
+                        'idv': int(message.text),
+                        'idT': message.from_user.id,
+                        'score': get_score(message)
+            }
+            gateway.infuser.update({'param':param})
             j = json.dumps(gateway.infuser)
             sock.send(j.encode("utf-8"))
         sock.shutdown(socket.SHUT_RDWR)
