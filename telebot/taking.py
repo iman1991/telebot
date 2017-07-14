@@ -6,11 +6,11 @@ import json
 import socket
 import main
 
-infuser = main.infuser
+# infuser = main.infuser
 
-sock = socket.socket()
+# sock = socket.socket()
 
-sock.connect(('127.0.0.1', 8080))
+# sock.connect(('127.0.0.1', 8080))
 
 
 bot = telebot.TeleBot(settings.token)
