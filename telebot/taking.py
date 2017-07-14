@@ -6,7 +6,6 @@ import json
 import socket
 import gateway
 
-infuser = gateway.infuser
 
 sock = socket.socket()
 
@@ -32,15 +31,16 @@ def get_score(message):
 
 def check(message):
     if message.text.isdigit():
-        global infuser
-        infuser['param']['idv'] = int(message.text)
-        infuser['param']['idT'] = message.from_user.id
-        infuser['param']['score'] = get_score(message)
-        j = json.dumps(infuser)
+        param = {
+                    'idv':int(message.text),
+                    'idT':message.from_user.id,
+                    'score':get_score(message)
+                }
+        gatewey.infuser.update({'param':param})
+        j = json.dumps(gateway.infuser)
         sock.send(j.encode("utf-8"))
-        data = sock.recv(2048)
+        sock.shutdown(socket.RDWR)
         sock.close()
-        del infuser
         handlers.answer_text(message, text_water, handlers.generator_menu(message, back_menu_list))
     elif message.text != "Назад":
         handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
