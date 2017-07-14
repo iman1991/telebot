@@ -7,8 +7,9 @@ import handlers
 import taking
 import socket
 import json
+import geteway
 
-# infuser={"method":"", "param":{"idT":0, "idv":0, "score":100}}
+infuser = main.infuser
 
 bot = telebot.TeleBot(settings.token)
 
@@ -34,8 +35,8 @@ def handle_start(message):
 
 @bot.message_handler(regexp='Получить воду')
 def handle_start(message):
-    # global infuser
-    # infuser['method'] = 'GetWater'
+    global infuser
+    infuser['method'] = 'GetWater'
     sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
     bot.register_next_step_handler(sent, taking.check)
 
