@@ -9,7 +9,7 @@ import socket
 import json
 import gateway
 
-infuser = main.infuser
+infuser = gateway.infuser
 
 bot = telebot.TeleBot(settings.token)
 

@@ -6,7 +6,7 @@ import json
 import socket
 import gateway
 
-infuser = main.infuser
+infuser = gateway.infuser
 
 sock = socket.socket()
 
