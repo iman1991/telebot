@@ -9,7 +9,6 @@ import socket
 import json
 import gateway
 
-infuser = gateway.infuser
 
 bot = telebot.TeleBot(settings.token)
 
@@ -35,7 +34,7 @@ def handle_start(message):
 
 @bot.message_handler(regexp='Получить воду')
 def handle_start(message):
-    infuser.update({'methed':'GetWater'})
+    gateway.infuser.update({'methed':'GetWater'})
     sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
     bot.register_next_step_handler(sent, taking.check)
 
