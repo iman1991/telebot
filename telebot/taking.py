@@ -29,6 +29,7 @@ def check(message):
     if message.text.isdigit():
         sock = socket.socket()
         sock.connect(('127.0.0.1', 9090))
+        sock.listen(1)
         param = {
                     'idv': int(message.text),
                     'idT': message.from_user.id,
@@ -37,6 +38,7 @@ def check(message):
         gateway.infuser.update({'param':param})
         j = json.dumps(gateway.infuser)
         sock.send(j.encode("utf-8"))
+        sock.shutdown(socket.SHUT_RDWR)
         sock.close()
         handlers.answer_text(message, text_water, handlers.generator_menu(message, back_menu_list))
     elif message.text != "Назад":
