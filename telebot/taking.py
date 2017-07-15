@@ -14,6 +14,8 @@ text_id = settings.text_id
 
 text_water = settings.text_water
 
+text_wait = settings.text_wait
+
 command_error = settings.command_error
 
 balance_empty = settings.balance_empty
