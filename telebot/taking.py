@@ -69,7 +69,7 @@ def add_balance(message):
         sock.send(j.encode("utf-8"))
         sock.shutdown(socket.SHUT_RDWR)
         sock.close()
-        handlers.answer_text(message, "Баланс: {}₽".format(get_score(message)), handlers.generator_menu(message, back_menu_list))
+        handlers.answer_text(message, text_add_balance, handlers.generator_menu(message, main_menu_list))
     elif message.text != "Назад":
         handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
 
