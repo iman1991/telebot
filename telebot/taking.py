@@ -25,20 +25,34 @@ def get_score(message):
     res = inDB.score(uid)
     return res
 
+def balance(message):
+    if 0 >= get_score(message):
+        return False
+    else:
+        return True
+
 def check(message):
-    if message.text.isdigit():
-        sock = socket.socket()
-        sock.connect(('127.0.0.1', 9090))
-        param = {
-                    'idv': int(message.text),
-                    'idT': message.from_user.id,
-                    'score': get_score(message)
-        }
-        gateway.infuser.update({'param':param})
-        j = json.dumps(gateway.infuser)
-        sock.send(j.encode("utf-8"))
-        sock.shutdown(socket.SHUT_RDWR)
-        sock.close()
-        handlers.answer_text(message, text_water, handlers.generator_menu(message, back_menu_list))
-    elif message.text != "Назад":
+    if balance(message):
+        if message.text.isdigit():
+            sock = socket.socket()
+            sock.connect(('127.0.0.1', 9090))
+            param = {
+                        'idv': int(message.text),
+                        'idT': message.from_user.id,
+                        'score': get_score(message)
+            }
+            gateway.infuser.update({'param':param})
+            j = json.dumps(gateway.infuser)
+            sock.send(j.encode("utf-8"))
+            sock.shutdown(socket.SHUT_RDWR)
+            sock.close()
+            handlers.answer_text(message, text_water, handlers.generator_menu(message, back_menu_list))
+        elif message.text != "Назад":
+            handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
+    else:
         handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
+
+
+
+
+
