@@ -14,6 +14,8 @@ bot = telebot.TeleBot(settings.token)
 
 text_welcome = settings.text_welcome
 
+balance_empty = settings.balance_empty
+
 text_get = settings.text_get
 
 text_id = settings.text_id
