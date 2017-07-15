@@ -48,7 +48,7 @@ def handle_start(message):
 def handle_start(message):
     gateway.infuser.update({'method':'ToUpBalance'})
     sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
-    bot.register_next_step_handler(sent, taking.check)
+    bot.register_next_step_handler(sent, taking.add_balance)
 
 
 @bot.message_handler(regexp='Баланс')
