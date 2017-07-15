@@ -22,7 +22,7 @@ text_id = settings.text_id
 
 text_error = settings.text_error
 
-main_menu_list = settings.main_menu_list
+back_menu_list = settings.back_menu_list
 
 main_menu_list = settings.main_menu_list
 
@@ -38,7 +38,7 @@ def handle_start(message):
 def handle_start(message):
     gateway.infuser.update({'method':'GetWater'})
     if taking.balance(message):
-        sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, main_menu_list))
+        sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
         bot.register_next_step_handler(sent, taking.check)
     else:
         handlers.answer_text(message, balance_empty, handlers.generator_menu(message, main_menu_list))
@@ -47,7 +47,7 @@ def handle_start(message):
 @bot.message_handler(regexp='Пополнить баланс')
 def handle_start(message):
     gateway.infuser.update({'method':'ToUpBalance'})
-    sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, main_menu_list))
+    sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
     bot.register_next_step_handler(sent, taking.check)
 
 
