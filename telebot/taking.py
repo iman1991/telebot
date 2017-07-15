@@ -16,6 +16,8 @@ text_water = settings.text_water
 
 command_error = settings.command_error
 
+balance_empty = settings.balance_empty
+
 back_menu_list = settings.back_menu_list
 
 main_menu_list = settings.main_menu_list
@@ -50,7 +52,7 @@ def check(message):
         elif message.text != "Назад":
             handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
     else:
-        handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
+        handlers.answer_text(message, balance_empty, handlers.generator_menu(message, main_menu_list))
 
 
 
