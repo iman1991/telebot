@@ -39,8 +39,11 @@ def balance(message):
         return True
 
 def get_vodomat(message):
-    vid = int(message.text)
-    res = inDB.vodomat(vid)
+    if message.text.isdigit():
+        vid = int(message.text)
+        res = inDB.vodomat(vid)
+    else:
+        res = False
     return res
 
 def check(message):
