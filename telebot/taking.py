@@ -56,7 +56,6 @@ def check(message):
             sock = socket.socket()
             sock.connect(('127.0.0.1', 9090))
             param = {
-                        'idv': int(message.text),
                         'idT': message.from_user.id,
                         'score': get_score(message)
             }
