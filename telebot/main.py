@@ -66,7 +66,7 @@ def handle_start(message):
     gateway.infuser.update({'param':param})
     j = json.dumps(gateway.infuser)
     sock.send(j.encode("utf-8"))
-    sock.shutdown(socket.SHUT_RDWR)
+    #sock.shutdown(socket.SHUT_RDWR)
     sock.close()
     handlers.answer_text(message, text_get, handlers.generator_menu(message, main_menu_list))
 
