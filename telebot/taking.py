@@ -29,6 +29,8 @@ stop_menu_list = settings.stop_menu_list
 
 main_menu_list = settings.main_menu_list
 
+sock = connection.connect_shluz()
+
 def get_score(message):
     uid = message.from_user.id
     res = inDB.score(uid)
@@ -52,7 +54,6 @@ def check(message):
     if balance(message):
         if get_vodomat(message):
             if message.text.isdigit():
-                sock = connection.connect_shluz()
                 param = {
                             'idv': int(message.text),
                             'idT': message.from_user.id,
