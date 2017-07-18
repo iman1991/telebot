@@ -51,7 +51,7 @@ def check(message):
             sock.shutdown(socket.SHUT_RDWR)
             sock.close()
             handlers.answer_text(message, text_water, handlers.generator_menu(message, main_menu_list))
-        elif message.text != "Остановить":
+        elif message.text == "Остановить":
             gateway.infuser.update({'method':'GetWaterStop'})
             sock = socket.socket()
             sock.connect(('127.0.0.1', 9090))
@@ -65,6 +65,8 @@ def check(message):
             sock.send(j.encode("utf-8"))
             sock.shutdown(socket.SHUT_RDWR)
             sock.close()
+            handlers.answer_text(message, text_get, handlers.generator_menu(message, main_menu_list))
+        elif message.text != "Остановить":
             handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
     else:
         handlers.answer_text(message, balance_empty, handlers.generator_menu(message, main_menu_list))
