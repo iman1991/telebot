@@ -51,6 +51,7 @@ def handle_start(message):
 
 @bot.message_handler(regexp='Остановить')
 def handle_start(message):
+    gateway.infuser.update({'method':'GetWaterStop'})
     handlers.answer_text(message, text_get, handlers.generator_menu(message, main_menu_list))
 
 
