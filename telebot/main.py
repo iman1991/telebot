@@ -59,11 +59,6 @@ def handle_start(message):
 def handle_start(message):
     gateway.infuser.update({'method':'GetWaterStop'})
     sock = connection.connect_shluz()
-    param = {
-                'idT': message.from_user.id,
-                'score': taking.get_score(message)
-    }
-    gateway.infuser.update({'param':param})
     j = json.dumps(gateway.infuser)
     sock.send(j.encode("utf-8"))
     sock.shutdown(socket.SHUT_RDWR)
