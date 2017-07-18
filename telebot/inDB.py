@@ -36,5 +36,8 @@ def vodomat(vid):
     results = cursor.fetchone()
     cursor.close()
     connect.close()
-    res = results["idv"]
+    try:
+        res = results["idv"]
+    except NoneType:
+        res False
     return res
