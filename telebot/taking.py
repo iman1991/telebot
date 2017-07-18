@@ -66,8 +66,6 @@ def check(message):
                 handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
         elif message.text != "Остановить":
             handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
-        else:
-            handlers.answer_text(message, text_get, handlers.generator_menu(message, main_menu_list))   
     else:
         handlers.answer_text(message, balance_empty, handlers.generator_menu(message, main_menu_list))
 
