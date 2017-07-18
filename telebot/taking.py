@@ -65,9 +65,7 @@ def check(message):
                 sock.close()
                 handlers.answer_text(message, text_water, handlers.generator_menu(message, stop_menu_list))
             elif message.text != "Остановить":
-                handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
-        elif message.text != "Остановить":
-            handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
+                handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))]
     else:
         handlers.answer_text(message, balance_empty, handlers.generator_menu(message, main_menu_list))
 
