@@ -54,6 +54,7 @@ def check(message):
     if balance(message):
         if get_vodomat(message):
             if message.text.isdigit():
+                sock = connection.connect_shluz()
                 param = {
                             'idv': int(message.text),
                             'idT': message.from_user.id,
