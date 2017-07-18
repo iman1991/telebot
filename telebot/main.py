@@ -58,9 +58,9 @@ def handle_start(message):
 @bot.message_handler(regexp='Остановить')
 def handle_start(message):
     gateway.infuser.update({'method':'GetWaterStop'})
-    sock.send(j.encode("utf-8"))
-    sock.shutdown(socket.SHUT_RDWR)
-    sock.close()
+    taking.sock.send(taking.j.encode("utf-8"))
+    taking.sock.shutdown(socket.SHUT_RDWR)
+    taking.sock.close()
     handlers.answer_text(message, text_get, handlers.generator_menu(message, main_menu_list))
 
 
