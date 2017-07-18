@@ -29,8 +29,6 @@ stop_menu_list = settings.stop_menu_list
 
 main_menu_list = settings.main_menu_list
 
-j = Null
-
 sock = connection.connect_shluz()
 
 def get_score(message):
