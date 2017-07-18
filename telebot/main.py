@@ -44,19 +44,12 @@ def handle_start(message):
         handlers.answer_text(message, balance_empty, handlers.generator_menu(message, main_menu_list))
 
 
-@bot.message_handler(regexp='Остановить')
-def handle_start(message):
-    gateway.infuser.update({'method':'ToUpBalance'})
-    sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
-    bot.register_next_step_handler(sent, taking.add_balance)
-
-
 @bot.message_handler(regexp='Баланс')
 def handle_start(message):
     handlers.answer_text(message, "{}₽".format(taking.get_score(message)), handlers.generator_menu(message, main_menu_list))
 
 
-@bot.message_handler(regexp='Назад')
+@bot.message_handler(regexp='Остановить')
 def handle_start(message):
     handlers.answer_text(message, text_get, handlers.generator_menu(message, main_menu_list))
 
