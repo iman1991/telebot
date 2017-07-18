@@ -34,7 +34,7 @@ def handle_start(message):
     handlers.answer_text(message, text_welcome, handlers.generator_menu(message, main_menu_list))
 
 
-@bot.message_handler(regexp='Получить воду')
+@bot.message_handler(regexp='Активировать')
 def handle_start(message):
     gateway.infuser.update({'method':'GetWater'})
     if taking.balance(message):
@@ -44,7 +44,7 @@ def handle_start(message):
         handlers.answer_text(message, balance_empty, handlers.generator_menu(message, main_menu_list))
 
 
-@bot.message_handler(regexp='Пополнить баланс')
+@bot.message_handler(regexp='Остановить')
 def handle_start(message):
     gateway.infuser.update({'method':'ToUpBalance'})
     sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
