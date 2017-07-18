@@ -53,7 +53,7 @@ def handle_start(message):
 def handle_start(message):
     gateway.infuser.update({'method':'GetWaterStop'})
     sock = socket.socket()
-    sock.connect(('127.0.0.1', 8080))
+    sock.connect(('127.0.0.1', 9090))
     param = {
                 'idT': message.from_user.id,
                 'score': taking.get_score(message)

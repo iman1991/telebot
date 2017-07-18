@@ -43,12 +43,11 @@ def get_vodomat(message):
     return res
 
 def check(message):
-    print(get_vodomat(message))
     if balance(message):
         if get_vodomat(message):
             if message.text.isdigit():
                 sock = socket.socket()
-                sock.connect(('127.0.0.1', 8080))
+                sock.connect(('127.0.0.1', 9090))
                 param = {
                             'idv': int(message.text),
                             'idT': message.from_user.id,
