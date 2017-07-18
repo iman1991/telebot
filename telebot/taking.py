@@ -25,6 +25,8 @@ balance_empty = settings.balance_empty
 
 back_menu_list = settings.back_menu_list
 
+stop_menu_list = settings.stop_menu_list
+
 main_menu_list = settings.main_menu_list
 
 def get_score(message):
@@ -61,7 +63,7 @@ def check(message):
                 sock.send(j.encode("utf-8"))
                 sock.shutdown(socket.SHUT_RDWR)
                 sock.close()
-                handlers.answer_text(message, text_water, handlers.generator_menu(message, back_menu_list))
+                handlers.answer_text(message, text_water, handlers.generator_menu(message, stop_menu_list))
             elif message.text != "Остановить":
                 handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
         elif message.text != "Остановить":

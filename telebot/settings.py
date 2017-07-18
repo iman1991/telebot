@@ -16,7 +16,9 @@ text_wait = "Подождите..."
 
 text_error = "Команда не найдена ("
 
-back_menu_list = ["Остановить"]
+back_menu_list = ["Назад"]
+
+stop_menu_list = ["Остановить"]
 
 main_menu_list = [
 	"Активировать", 

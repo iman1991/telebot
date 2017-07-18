@@ -50,6 +50,11 @@ def handle_start(message):
     handlers.answer_text(message, "{}₽".format(taking.get_score(message)), handlers.generator_menu(message, main_menu_list))
 
 
+@bot.message_handler(regexp='Назад')
+def handle_start(message):
+    handlers.answer_text(message, text_get, handlers.generator_menu(message, main_menu_list))
+
+
 @bot.message_handler(regexp='Остановить')
 def handle_start(message):
     gateway.infuser.update({'method':'GetWaterStop'})
