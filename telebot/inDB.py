@@ -32,7 +32,7 @@ def score(uid):
 def vodomat(vid):
     connect = connection.connect()
     cursor = connect.cursor()
-    cursor.execute("SELECT idv FROM users WHERE idv = %i" % (vid))
+    cursor.execute("SELECT idv FROM vs WHERE idv = %i" % (vid))
     results = cursor.fetchone()
     cursor.close()
     connect.close()
