@@ -56,7 +56,7 @@ def handle_start(message):
     sock.connect(('127.0.0.1', 8080))
     param = {
                 'idT': message.from_user.id,
-                'score': get_score(message)
+                'score': tackig.get_score(message)
     }
     gateway.infuser.update({'param':param})
     j = json.dumps(gateway.infuser)
