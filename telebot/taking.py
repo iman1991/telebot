@@ -43,6 +43,7 @@ def get_vodomat(message):
     return res
 
 def check(message):
+    print(get_vodomat(message))
     if balance(message):
         if get_vodomat(message) or message.text.isdigit():
             if message.text.isdigit():
