@@ -58,8 +58,6 @@ def handle_start(message):
 @bot.message_handler(regexp='Остановить')
 def handle_start(message):
     gateway.infuser.update({'method':'GetWaterStop'})
-    sock = connection.connect_shluz()
-    j = json.dumps(gateway.infuser)
     sock.send(j.encode("utf-8"))
     sock.shutdown(socket.SHUT_RDWR)
     sock.close()
