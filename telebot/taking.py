@@ -41,7 +41,7 @@ def check(message):
     if balance(message):
         if message.text.isdigit():
             sock = socket.socket()
-            sock.connect(('127.0.0.1', 9090))
+            sock.connect(('127.0.0.1', 8080))
             param = {
                         'idv': int(message.text),
                         'idT': message.from_user.id,
@@ -56,7 +56,7 @@ def check(message):
         elif message.text == "Остановить":
             gateway.infuser.update({'method':'GetWaterStop'})
             sock = socket.socket()
-            sock.connect(('127.0.0.1', 9090))
+            sock.connect(('127.0.0.1', 8080))
             param = {
                         'idT': message.from_user.id,
                         'score': get_score(message)
