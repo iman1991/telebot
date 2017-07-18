@@ -38,13 +38,13 @@ def balance(message):
         return True
 
 def get_vodomat(message):
-    vid = message.text
+    vid = int(message.text)
     res = inDB.vodomat(vid)
     return res
 
 def check(message):
     if balance(message):
-        if get_vodomat(message) != None:
+        if get_vodomat(message) != None or message.text.isdigit():
             if message.text.isdigit():
                 sock = socket.socket()
                 sock.connect(('127.0.0.1', 8080))
@@ -61,8 +61,8 @@ def check(message):
                 handlers.answer_text(message, text_water, handlers.generator_menu(message, back_menu_list))
             elif message.text != "Остановить":
                 handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
-            else:
-                handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
+        else:
+            handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
     else:
         handlers.answer_text(message, balance_empty, handlers.generator_menu(message, main_menu_list))
 
