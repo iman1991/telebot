@@ -37,7 +37,7 @@ def handle_start(message):
 
 @bot.message_handler(regexp='Активировать')
 def handle_start(message):
-    gateway.infuser.update({'method':'GetWater'})
+    gateway.infuser.update({'method':'Activate'})
     if taking.balance(message):
         sent = handlers.answer_text(message, text_id, handlers.generator_menu(message, back_menu_list))
         bot.register_next_step_handler(sent, taking.check)
@@ -57,7 +57,7 @@ def handle_start(message):
 
 @bot.message_handler(regexp='Остановить')
 def handle_start(message):
-    gateway.infuser.update({'method':'GetWaterStop'})
+    gateway.infuser.update({'method':'Stop'})
     sock = connection.connect_shluz()
     param = {
                 'idT': message.from_user.id,
