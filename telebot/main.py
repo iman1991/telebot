@@ -8,6 +8,7 @@ import taking
 import socket
 import json
 import gateway
+import connection
 
 
 bot = telebot.TeleBot(settings.token)
@@ -52,8 +53,7 @@ def handle_start(message):
 @bot.message_handler(regexp='Остановить')
 def handle_start(message):
     gateway.infuser.update({'method':'GetWaterStop'})
-    sock = socket.socket()
-    sock.connect(('127.0.0.1', 9090))
+    sock = connection.connect_shluz()
     param = {
                 'idT': message.from_user.id,
                 'score': taking.get_score(message)
