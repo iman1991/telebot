@@ -1,4 +1,5 @@
 import pymysql.cursors
+import socket
 
 def connect_shluz():
     try:
