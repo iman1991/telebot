@@ -28,3 +28,13 @@ def score(uid):
     connect.close()
     res = results["score"]
     return res
+
+def vodomat(vid):
+    connect = connection.connect()
+    cursor = connect.cursor()
+    cursor.execute("SELECT idv FROM users WHERE idv = %i" % (vid))
+    results = cursor.fetchone()
+    cursor.close()
+    connect.close()
+    res = results["idv"]
+    return res

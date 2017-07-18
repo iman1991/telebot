@@ -37,24 +37,32 @@ def balance(message):
     else:
         return True
 
+def get_vodomat(message):
+    vid = message.text
+    res = inDB.vodomat(vid)
+    return res
+
 def check(message):
     if balance(message):
-        if message.text.isdigit():
-            sock = socket.socket()
-            sock.connect(('127.0.0.1', 8080))
-            param = {
-                        'idv': int(message.text),
-                        'idT': message.from_user.id,
-                        'score': get_score(message)
-            }
-            gateway.infuser.update({'param':param})
-            j = json.dumps(gateway.infuser)
-            sock.send(j.encode("utf-8"))
-            sock.shutdown(socket.SHUT_RDWR)
-            sock.close()
-            handlers.answer_text(message, text_water, handlers.generator_menu(message, back_menu_list))
-        elif message.text != "Остановить":
-            handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
+        if get_vodomat(message) != None:
+            if message.text.isdigit():
+                sock = socket.socket()
+                sock.connect(('127.0.0.1', 8080))
+                param = {
+                            'idv': int(message.text),
+                            'idT': message.from_user.id,
+                            'score': get_score(message)
+                }
+                gateway.infuser.update({'param':param})
+                j = json.dumps(gateway.infuser)
+                sock.send(j.encode("utf-8"))
+                sock.shutdown(socket.SHUT_RDWR)
+                sock.close()
+                handlers.answer_text(message, text_water, handlers.generator_menu(message, back_menu_list))
+            elif message.text != "Остановить":
+                handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
+            else:
+                handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
     else:
         handlers.answer_text(message, balance_empty, handlers.generator_menu(message, main_menu_list))
 
