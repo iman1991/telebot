@@ -39,5 +39,5 @@ def vodomat(vid):
     try:
         res = results["idv"]
     except NoneType:
-        res False
+        res = False
     return res
