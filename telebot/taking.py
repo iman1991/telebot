@@ -12,6 +12,8 @@ bot = telebot.TeleBot(settings.token)
 
 text_id = settings.text_id
 
+text_get = settings.text_get
+
 text_water = settings.text_water
 
 text_wait = settings.text_wait
