@@ -37,7 +37,6 @@ def add_id(uid, idv):
     connect.commit()   
     cursor.close()
     connect.close()
-    return res
 
 def get_id(uid):
     connect = connection.connect()
