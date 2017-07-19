@@ -38,7 +38,7 @@ def add_id(uid, idv):
     cursor.close()
     connect.close()
 
-def get_id(uid):
+def get_id_v(uid):
     connect = connection.connect()
     cursor = connect.cursor()
     cursor.execute("SELECT idv FROM users WHERE idT = %i" % (uid))
@@ -46,6 +46,16 @@ def get_id(uid):
     cursor.close()
     connect.close()
     res = results["idv"]
+    return res
+
+def get_id(uid):
+    connect = connection.connect()
+    cursor = connect.cursor()
+    cursor.execute("SELECT idT FROM users WHERE idT = %i" % (uid))
+    results = cursor.fetchone()
+    cursor.close()
+    connect.close()
+    res = results["idT"]
     return res
 
 def vodomat(vid):
