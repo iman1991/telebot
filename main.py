@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 import telebot
-import settings
+from settings import *
 import inDB
 import handlers
 import taking
@@ -11,22 +11,7 @@ import gateway
 import connection
 
 
-bot = telebot.TeleBot(settings.token)
-
-text_welcome = settings.text_welcome
-
-balance_empty = settings.balance_empty
-
-text_get = settings.text_get
-
-text_id = settings.text_id
-
-text_error = settings.text_error
-
-back_menu_list = settings.back_menu_list
-
-main_menu_list = settings.main_menu_list
-
+bot = telebot.TeleBot(token)
 
 
 @bot.message_handler(commands=['start'])
