@@ -29,6 +29,26 @@ def score(uid):
     res = results["score"]
     return res
 
+
+def add_id(uid, idv):
+    connect = connection.connect()
+    cursor = connect.cursor()
+    cursor.execute("INSERT INTO users (idv) values ( %i ) WHERE idT = %i" % (idv, uid))
+    connect.commit()   
+    cursor.close()
+    connect.close()
+    return res
+
+def get_id(uid):
+    connect = connection.connect()
+    cursor = connect.cursor()
+    cursor.execute("SELECT idv FROM users WHERE idT = %i" % (uid))
+    results = cursor.fetchone()
+    cursor.close()
+    connect.close()
+    res = results["idv"]
+    return res
+
 def vodomat(vid):
     connect = connection.connect()
     cursor = connect.cursor()
