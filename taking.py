@@ -63,10 +63,10 @@ def check(message):
                 sock.send(j.encode("utf-8"))
                 inDB.add_id(message.from_user.id, int(message.text))
                 handlers.answer_text(message, text_water, handlers.generator_menu(message, stop_menu_list))
-        else:
-            handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
             elif message.text != "Остановить":
                 handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
+        else:
+            handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
     else:
         handlers.answer_text(message, balance_empty, handlers.generator_menu(message, main_menu_list))
 
