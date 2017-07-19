@@ -61,7 +61,7 @@ def check(message):
                 gateway.infuser.update({'param':param})
                 j = json.dumps(gateway.infuser)
                 sock.send(j.encode("utf-8"))
-                add_id(message.from_user.id, int(message.text))
+                inDB.add_id(message.from_user.id, int(message.text))
                 handlers.answer_text(message, text_water, handlers.generator_menu(message, stop_menu_list))
             elif message.text != "Остановить":
                 handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
