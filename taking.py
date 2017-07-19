@@ -67,7 +67,7 @@ def check(message):
                 handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
         else:
             handlers.answer_text(message, command_error, handlers.generator_menu(message, main_menu_list))
-    else:
+    elif message.text != "Назад":
         handlers.answer_text(message, balance_empty, handlers.generator_menu(message, main_menu_list))
 
 
