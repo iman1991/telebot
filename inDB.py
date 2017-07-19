@@ -33,7 +33,7 @@ def score(uid):
 def add_id(uid, idv):
     connect = connection.connect()
     cursor = connect.cursor()
-    cursor.execute("INSERT INTO users (idv) values ( %i ) WHERE idT = %i" % (idv, uid))
+    cursor.execute("UPDATE users SET idv = %i  WHERE idT = %i" % (idv, uid))
     connect.commit()   
     cursor.close()
     connect.close()
