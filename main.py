@@ -60,6 +60,7 @@ def handle_start(message):
     gateway.infuser.update({'method':'Stop'})
     sock = connection.connect_shluz()
     param = {
+                'idv': int(idDB.get_id(uid)),
                 'idT': inDB.get_id(message.from_user.id),
                 'score': taking.get_score(message)
     }
