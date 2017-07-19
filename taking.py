@@ -1,31 +1,15 @@
 import telebot
 import handlers
-import settings
+from settings import *
 import inDB
 import json
 import socket
 import gateway
 import connection
 
-bot = telebot.TeleBot(settings.token)
 
-text_id = settings.text_id
+bot = telebot.TeleBot(token)
 
-text_get = settings.text_get
-
-text_water = settings.text_water
-
-text_wait = settings.text_wait
-
-command_error = settings.command_error
-
-balance_empty = settings.balance_empty
-
-back_menu_list = settings.back_menu_list
-
-stop_menu_list = settings.stop_menu_list
-
-main_menu_list = settings.main_menu_list
 
 sock = connection.connect_shluz()
 
